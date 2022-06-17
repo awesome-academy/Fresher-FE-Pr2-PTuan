@@ -1,0 +1,53 @@
+{
+  "users": [
+    {
+      "email": "olivier@mail.com",
+      "password": "$2a$10$G0BA280Oht9k5yM2nPvYAucVKvnkUPU/neT4biy8dyTSrUdEZGvA2",
+      "id": 1
+    },
+    {
+      "email": "ad@gmail.com",
+      "password": "$2a$10$k9yxWxMyca/plxdtSg3Va.b855yPJDJy1kPb5c1zBGQri3qdzmwqW",
+      "fullName": "",
+      "userType": "",
+      "phoneNumber": "",
+      "avatar": "",
+      "id": 2,
+      "tokens": ""
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Quần Jean Nam Ống Suông Xám Bạc",
+      "images": "",
+      "totalRating": 5,
+      "categoryId": "",
+      "brandId": "",
+      "sale": 10,
+      "color": [
+        "Đen",
+        "Trắng"
+      ],
+      "totalQuantity": 10,
+      "size": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "description": [
+        "Chất liệu Demin dệt thoi với thành phần: 98% cotton 2% spandex",
+        "Chất vải jean cotton mềm mịn, không bai dão, ít bị nhăn",
+        "Vải bền chắc, thoải mái cho người sử dụng có thể vận động.",
+        "Tôn dáng, trẻ trung, năng động, bền màu, thoải mái khi mặc đi chơi",
+        "YODY - Look good. Feel good"
+      ],
+      "price": 1000000,
+      "image": "",
+      "category": "",
+      "createdAt": "2020-01-01T00:00:00.000Z"
+    }
+  ]
+}
