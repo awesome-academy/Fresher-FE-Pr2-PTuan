@@ -11,13 +11,14 @@ function App() {
     <Routes>
       <Route element={<PrimaryLayout />}>
         {publicRoutes.map((route, index) => {
-          console.log(route.component);
-          return <Route key={index} path={route.path} element={route.component} />;
+          return (
+            <Route path={route.path} element={route.component} key={index} />
+          );
         })}
       </Route>
       <Route element={<PrivateLayout />}>
         {privateRoutes.map((route, index) => {
-          return <Route key={index} path={route.path} element={route.component} />;
+          <Route key={index} path={route.path} element={route.component} />;
         })}
       </Route>
     </Routes>
