@@ -20,6 +20,14 @@
       "email": "tuan@gmail.com",
       "password": "$2a$10$L3ZbC8YQeazhmOBLEvS48ednECiwCQgQqQwLR2XABUi/HI2v8vZJS",
       "id": 3
+    },
+    {
+      "email": "tuafffff@gmail.com",
+      "password": "$2a$10$yvHMIhl0babYism004tywOEitBVP8SL0GQBa9lmIdZV996Jk.IdWm",
+      "name": "tuan",
+      "surname": "Phan",
+      "phone": "0868268142",
+      "id": 4
     }
   ],
   "products": [
