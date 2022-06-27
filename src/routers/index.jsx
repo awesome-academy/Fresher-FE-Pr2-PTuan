@@ -17,7 +17,7 @@ export const publicRoutes = [
     component: <Login />,
   },
   {
-    path: '/detail',
+    path: '/detail/:id',
     component: <DetailProduct />,
   },
 ];
