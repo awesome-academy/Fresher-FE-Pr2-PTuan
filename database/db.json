@@ -1,13 +1,7 @@
 {
   "users": [
     {
-      "email": "olivier@mail.com",
-      "password": "$2a$10$G0BA280Oht9k5yM2nPvYAucVKvnkUPU/neT4biy8dyTSrUdEZGvA2",
-      "id": 1,
-      "role": "admin"
-    },
-    {
-      "email": "ad@gmail.com",
+      "email": "ad1@gmail.com",
       "password": "$2a$10$k9yxWxMyca/plxdtSg3Va.b855yPJDJy1kPb5c1zBGQri3qdzmwqW",
       "fullName": "",
       "userType": "",
@@ -17,17 +11,35 @@
       "tokens": ""
     },
     {
-      "email": "tuan@gmail.com",
-      "password": "$2a$10$L3ZbC8YQeazhmOBLEvS48ednECiwCQgQqQwLR2XABUi/HI2v8vZJS",
-      "id": 3
-    },
-    {
-      "email": "tuafffff@gmail.com",
-      "password": "$2a$10$yvHMIhl0babYism004tywOEitBVP8SL0GQBa9lmIdZV996Jk.IdWm",
+      "email": "tuanphan204@gmail.com",
+      "password": "$2a$10$IJ/.PVrIBVCW07N01sm1LO2kajWNv4ODkXf/9cuNSa.LHrDoZiLg6",
       "name": "tuan",
       "surname": "Phan",
-      "phone": "0868268142",
+      "phone": "0546546465",
+      "id": 3,
+      "updatedAt": 1656431756256,
+      "city": "79",
+      "district": "772",
+      "ward": "27250",
+      "address": "xa 10",
+      "paymentMethod": "Tiền mặt"
+    },
+    {
+      "email": "tuanphan2041@gmail.com",
+      "password": "$2a$10$vS0n9geTRj4pkaDMkHCcQ.eZG8kfSlmLUkRaUSXpjpfJx1Amj0Vyy",
+      "name": "tuan",
+      "surname": "Phan",
+      "phone": "0546546465",
       "id": 4
+    },
+    {
+      "email": "ad@gmail.com",
+      "password": "$2a$10$McH6XX6nkTBupGU/5HXYXeyvw4rRck3Rb.SDo2mkcBjSfC1j8RrCu",
+      "name": "Tuan Admin",
+      "surname": "Phan",
+      "phone": "0123456789",
+      "id": 5,
+      "role": "admin"
     }
   ],
   "products": [
@@ -57,7 +69,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "ao-nam",
-      "size": [
+      "sizes": [
         "S",
         "M",
         "L"
@@ -89,7 +101,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "ao-nam",
-      "size": [
+      "sizes": [
         "S",
         "M",
         "L"
@@ -121,7 +133,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "ao-nam",
-      "size": [
+      "sizes": [
         "S",
         "M",
         "L"
@@ -153,7 +165,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "ao-nam",
-      "size": [
+      "sizes": [
         "S",
         "M",
         "L"
@@ -185,7 +197,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "ao-nam",
-      "size": [
+      "sizes": [
         "S",
         "M",
         "L"
@@ -217,7 +229,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "ao-nam",
-      "size": [
+      "sizes": [
         "S",
         "M",
         "L"
@@ -249,7 +261,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "ao-nam",
-      "size": [
+      "sizes": [
         "S",
         "M",
         "L"
@@ -281,7 +293,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "ao-nam",
-      "size": [
+      "sizes": [
         "S",
         "M",
         "L"
@@ -313,7 +325,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "ao-nam",
-      "size": [
+      "sizes": [
         "S",
         "M",
         "L"
@@ -339,7 +351,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "ao-nam",
-      "size": [
+      "sizes": [
         "S",
         "M",
         "L"
@@ -371,7 +383,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "quan-nam",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -403,7 +415,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "quan-nam",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -429,7 +441,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "quan-nam",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -455,7 +467,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "quan-nam",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -481,7 +493,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "quan-nam",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -507,7 +519,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "quan-nam",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -533,7 +545,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "quan-nam",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -559,7 +571,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "quan-nam",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -585,7 +597,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "quan-nam",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -611,7 +623,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "quan-nam",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -640,7 +652,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "phu-kien-nam",
-      "size": []
+      "sizes": []
     },
     {
       "id": 22,
@@ -662,7 +674,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "phu-kien-nam",
-      "size": []
+      "sizes": []
     },
     {
       "id": 23,
@@ -687,7 +699,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "phu-kien-nam",
-      "size": []
+      "sizes": []
     },
     {
       "id": 24,
@@ -709,7 +721,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "phu-kien-nam",
-      "size": []
+      "sizes": []
     },
     {
       "id": 25,
@@ -731,7 +743,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "phu-kien-nam",
-      "size": []
+      "sizes": []
     },
     {
       "id": 26,
@@ -753,7 +765,7 @@
       "new": "MỚI",
       "type": "nam",
       "style": "phu-kien-nam",
-      "size": []
+      "sizes": []
     },
     {
       "id": 27,
@@ -781,7 +793,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "ao-nu",
-      "size": [
+      "sizes": [
         "S",
         "M",
         "L"
@@ -813,7 +825,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "ao-nu",
-      "size": [
+      "sizes": [
         "S",
         "M",
         "L"
@@ -845,7 +857,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "ao-nu",
-      "size": [
+      "sizes": [
         "S",
         "M",
         "L"
@@ -877,7 +889,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "ao-nu",
-      "size": [
+      "sizes": [
         "S",
         "M",
         "L"
@@ -909,7 +921,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "ao-nu",
-      "size": [
+      "sizes": [
         "S",
         "M",
         "L"
@@ -935,7 +947,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "ao-nu",
-      "size": [
+      "sizes": [
         "S",
         "M",
         "L"
@@ -961,7 +973,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "quan-nu",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -987,7 +999,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "quan-nu",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -1013,7 +1025,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "quan-nu",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -1039,7 +1051,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "quan-nu",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -1065,7 +1077,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "quan-nu",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -1091,7 +1103,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "quan-nu",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -1117,7 +1129,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "vay-nu",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -1143,7 +1155,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "vay-nu",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -1169,7 +1181,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "vay-nu",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -1195,7 +1207,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "vay-nu",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -1221,7 +1233,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "vay-nu",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -1247,7 +1259,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "vay-nu",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -1273,7 +1285,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "phu-kien-nu",
-      "size": [
+      "sizes": [
         28,
         29,
         30
@@ -1302,7 +1314,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "phu-kien-nu",
-      "size": []
+      "sizes": []
     },
     {
       "id": 47,
@@ -1327,7 +1339,7 @@
       "new": "MỚI",
       "type": "nu",
       "style": "phu-kien-nu",
-      "size": []
+      "sizes": []
     },
     {
       "id": 48,
@@ -1355,7 +1367,7 @@
       "new": "MỚI",
       "type": "tre-em",
       "style": "ao-tre-em",
-      "size": [
+      "sizes": [
         2,
         4,
         6
@@ -1381,7 +1393,7 @@
       "new": "MỚI",
       "type": "tre-em",
       "style": "ao-tre-em",
-      "size": [
+      "sizes": [
         2,
         4,
         6
@@ -1410,7 +1422,7 @@
       "new": "MỚI",
       "type": "tre-em",
       "style": "ao-tre-em",
-      "size": [
+      "sizes": [
         2,
         4,
         6
@@ -1439,7 +1451,7 @@
       "new": "MỚI",
       "type": "tre-em",
       "style": "ao-tre-em",
-      "size": [
+      "sizes": [
         2,
         4,
         6
@@ -1465,7 +1477,7 @@
       "new": "MỚI",
       "type": "tre-em",
       "style": "ao-tre-em",
-      "size": [
+      "sizes": [
         2,
         4,
         6
@@ -1494,7 +1506,7 @@
       "new": "MỚI",
       "type": "tre-em",
       "style": "ao-tre-em",
-      "size": [
+      "sizes": [
         2,
         4,
         6
@@ -1520,7 +1532,7 @@
       "new": "MỚI",
       "type": "tre-em",
       "style": "ao-tre-em",
-      "size": [
+      "sizes": [
         2,
         4,
         6
@@ -1549,7 +1561,7 @@
       "new": "MỚI",
       "type": "tre-em",
       "style": "quan-tre-em",
-      "size": [
+      "sizes": [
         8,
         10,
         12
@@ -1578,7 +1590,7 @@
       "new": "MỚI",
       "type": "tre-em",
       "style": "quan-tre-em",
-      "size": [
+      "sizes": [
         8,
         10,
         12
@@ -1604,7 +1616,7 @@
       "new": "MỚI",
       "type": "tre-em",
       "style": "quan-tre-em",
-      "size": [
+      "sizes": [
         8,
         10,
         12
@@ -1629,43 +1641,27 @@
       "new": "MỚI",
       "type": "tre-em",
       "style": "quan-tre-em",
-      "size": [
+      "sizes": [
         8,
         10,
         12
       ]
-    },
+    }
+  ],
+  "carts": [
     {
-      "id": 59,
-      "name": "Quần Jean Nam Ống Suông Xám Bạc",
-      "images": "",
-      "totalRating": 5,
-      "categoryId": "",
-      "brandId": "",
-      "sale": 10,
-      "color": [
-        "Đen",
-        "Trắng"
-      ],
-      "totalQuantity": 10,
-      "size": [
-        "S",
-        "M",
-        "L",
-        "XL",
-        "XXL"
-      ],
-      "description": [
-        "Chất liệu Demin dệt thoi với thành phần: 98% cotton 2% spandex",
-        "Chất vải jean cotton mềm mịn, không bai dão, ít bị nhăn",
-        "Vải bền chắc, thoải mái cho người sử dụng có thể vận động.",
-        "Tôn dáng, trẻ trung, năng động, bền màu, thoải mái khi mặc đi chơi",
-        "YODY - Look good. Feel good"
-      ],
-      "price": 1000000,
-      "image": "",
-      "category": "",
-      "createdAt": "2020-01-01T00:00:00.000Z"
+      "userID": 3,
+      "cart": [
+        {
+          "productID": 2,
+          "name": "Áo polo nam cafe phối nẹp",
+          "image": "https://storage.googleapis.com/cdn.nhanh.vn/store/3138/ps/20210323/apm3635_gre_6_800x1200.jpg",
+          "price": 199000,
+          "amount": 2,
+          "size": "M",
+          "colorName": "Trắng"
+        }
+      ]
     }
   ],
   "cities": [
@@ -97296,6 +97292,59 @@
       "name": "Xã Ứng Hoè",
       "status": 1,
       "region": null
+    }
+  ],
+  "comments": [
+    {
+      "productID": 1,
+      "comment": [
+        {
+          "rate": 3,
+          "description": "tuan",
+          "name": "tuan"
+        },
+        {
+          "name": "tuan",
+          "rate": 5,
+          "description": "dep lam"
+        },
+        {
+          "name": "tuan",
+          "rate": 5,
+          "description": "pppppp"
+        },
+        {
+          "name": "tuan",
+          "rate": 2,
+          "description": "pôppop"
+        },
+        {
+          "name": "tuan",
+          "rate": 4,
+          "description": "asdasda"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "productID": 2,
+      "comment": [
+        {
+          "name": "tuan",
+          "rate": 2,
+          "description": "abc"
+        }
+      ]
+    },
+    {
+      "productID": 3,
+      "comment": [
+        {
+          "name": "tuan",
+          "rate": 3,
+          "description": "abc"
+        }
+      ]
     }
   ]
 }
