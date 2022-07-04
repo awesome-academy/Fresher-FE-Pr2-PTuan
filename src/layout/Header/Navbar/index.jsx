@@ -239,7 +239,7 @@ const Navbar = () => {
             {list.map((item) => {
               return (
                 <li className="nav-item" key={item.name}>
-                  <Link className="item-href" to={item?.link}>
+                  <Link className="item-href" to={item.link}>
                     {item.name}
                   </Link>
                   {item.list && (
