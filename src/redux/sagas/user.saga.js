@@ -50,7 +50,6 @@ function* Register(action) {
     });
     callback();
   } catch (e) {
-    console.log(e);
     yield put({
       type: FAIL(USER_ACTION.SIGN_UP),
       payload: e.message,
