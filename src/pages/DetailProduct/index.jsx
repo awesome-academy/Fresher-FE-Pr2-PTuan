@@ -26,13 +26,16 @@ import { Link, useParams } from 'react-router-dom';
 import { formatNumber, openNotificationWithIcon } from '../../helper';
 
 import { getProductDetail } from '../../redux/actions/product.action';
+import { addToCart } from '../../redux/actions/cart.action';
 import './style.scss';
+import { getCommentListAction, sendCommentAction } from '../../redux/actions';
 
 function DetailProduct() {
   const { productDetails, loading } = useSelector(
     (state) => state.productReducer,
   );
   const { userInfo } = useSelector((state) => state.userReducer);
+  const { commentList } = useSelector((state) => state.commentReducer);
   const [imageIndex, setImageIndex] = useState(0);
   const [size, setSize] = useState(0);
   const [formComment] = Form.useForm();
@@ -56,6 +59,19 @@ function DetailProduct() {
       message: 'Thêm vào giỏ hàng thành công',
       description: `Sản phẩm ${productDetails.name} đã được thêm vào giỏ hàng`,
     });
+
+    dispatch(
+      addToCart({
+        id: uuidv4(),
+        productID: parseInt(id),
+        name: productDetails.name,
+        image: productDetails.images[productDetails.colors[values.color]],
+        price: productDetails.price,
+        amount: values.amount,
+        size: productDetails.sizes[values.size],
+        colorName: productDetails.colorsName[values.color],
+      }),
+    );
   };
 
   const renderColor = ({ images }) => {
@@ -135,12 +151,15 @@ function DetailProduct() {
           <Row gutter={32}>
             <Col lg={12}>
               <ImageGallery
-                items={getListImages(productDetails) || []}
+                items={
+                  (productDetails.images && getListImages(productDetails)) || []
+                }
                 showFullscreenButton={false}
                 thumbnailPosition="left"
                 showPlayButton={false}
                 showNav={false}
                 onBeforeSlide={(nextIndex) => {
+                  console.log(nextIndex);
                   setImageIndex(nextIndex);
                 }}
                 startIndex={imageIndex}

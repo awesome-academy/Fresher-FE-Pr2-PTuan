@@ -1,8 +1,9 @@
-@import '../../../style/style.scss';
+@import "../../../style/style.scss";
 
 .navbar {
   border-bottom: 1px solid rgba($gray, 0.3);
   box-shadow: 0 6px 12px 0 rgb(0 0 0 / 4%);
+  background-color: $white;
   padding: 0 !important;
 
   .navbar-header {
@@ -38,17 +39,13 @@
       margin: 0;
       height: 100%;
       font-size: 1.6rem;
-      @include respond-to(tablet-and-down) {
-        padding: 0;
+      @include respond-to(largedesktop-and-down) {
+        display: none !important;
       }
       @include respond-to(phone-and-down) {
         display: none;
       }
       .nav-item {
-        @include respond-to(tablet-and-down) {
-          font-size: 1.1rem;
-          margin: 0 8px 0 0;
-        }
         position: static;
         height: 100%;
         &:hover {
@@ -84,7 +81,7 @@
             }
           }
           &::before {
-            content: '';
+            content: "";
             position: absolute;
             bottom: 0;
             left: 0;
@@ -96,12 +93,9 @@
       }
     }
     .search {
-      @include flex($align: center);
       margin-left: 1rem;
+      margin-top: 2rem;
 
-      @include respond-to(phone-and-down) {
-        margin: 0 6px 0 18px;
-      }
       .search-box {
         width: 126px;
         height: 38px;
@@ -187,7 +181,7 @@
           display: none;
           padding: 1rem;
           &::after {
-            content: '';
+            content: "";
             position: absolute;
             width: 3rem;
             background-color: transparent;
@@ -240,7 +234,7 @@
           display: none;
           top: calc(100% + 10px);
           &::after {
-            content: '';
+            content: "";
             position: absolute;
             width: 30px;
             height: 20px;
@@ -256,7 +250,7 @@
               .clear-fix::after {
                 display: block;
                 clear: both;
-                content: '';
+                content: "";
               }
               p {
                 color: $black;

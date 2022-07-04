@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Form, Input, Button } from "antd";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import React, { useEffect } from 'react';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Form, Input, Button } from 'antd';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
-import { loginAction } from "../../redux/actions";
+import { login } from '../../redux/actions';
 
-import "./style.scss";
+import './style.scss';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -14,16 +14,16 @@ const Login = () => {
   const { token } = useSelector((state) => state.userReducer);
 
   useEffect(() => {
-    token.length && navigate("/");
+    token.length && navigate('/');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleLogin = (data) => {
     dispatch(
-      loginAction({
+      login({
         data,
         callback: (page) => navigate(page),
-      })
+      }),
     );
   };
 
@@ -43,7 +43,7 @@ const Login = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your Email!",
+                message: 'Please input your Email!',
               },
             ]}
           >
@@ -57,7 +57,7 @@ const Login = () => {
             rules={[
               {
                 required: true,
-                message: "Please input your Password!",
+                message: 'Please input your Password!',
               },
             ]}
           >

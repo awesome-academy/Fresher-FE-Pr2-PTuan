@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { LockOutlined } from '@ant-design/icons';
 
-import { registerAction } from '../../redux/actions';
+import { register } from '../../redux/actions';
 
 import '../Login/style.scss';
 import './style.scss';
@@ -15,7 +15,7 @@ const Register = () => {
   const handleRegister = (values) => {
     const { confirm, ...rest } = values;
     dispatch(
-      registerAction({
+      register({
         data: rest,
         callback: () => navigate('/login'),
       }),

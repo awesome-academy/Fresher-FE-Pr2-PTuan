@@ -1,7 +1,9 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Badge, Row, Col, Form, Input } from 'antd';
 import { LogoutOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '../../../redux/actions/user.action';
 
 import './style.scss';
 import NavMenuDrop from '../NavMenuDrop';
@@ -222,12 +224,29 @@ const list = [
 ];
 
 const Navbar = () => {
-  const fullName = 'Tuan';
-  const total = 10;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { token, userInfo } = useSelector((state) => state.userReducer);
+  const { cart } = useSelector((state) => state.cartReducer);
 
-  const handleLogout = () => {};
-  const renderCart = () => {};
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+  const renderCart = () =>
+    cart.map((item, index) => (
+      <Row gutter={[32, 32]} key={index} className="border-bottom">
+        <Col span={4}>{index + 1}</Col>
+        <Col span={4} className="product-img">
+          <img src={item.image} alt="product" />
+        </Col>
+        <Col span={4}>{item.name}</Col>
+        <Col span={4}>{item.amount}</Col>
+        <Col span={4}>{formatNumber(item.price)}</Col>
+        <Col span={4}>{formatNumber(item.price * item.amount)}</Col>
+      </Row>
+    ));
 
+  const handleFilter = (value) => {};
   return (
     <div className="navbar">
       <div className="container wrapper-container">
@@ -239,7 +258,7 @@ const Navbar = () => {
             {list.map((item) => {
               return (
                 <li className="nav-item" key={item.name}>
-                  <Link className="item-href" to={item.link}>
+                  <Link className="item-href" to={item?.link}>
                     {item.name}
                   </Link>
                   {item.list && (
@@ -250,25 +269,30 @@ const Navbar = () => {
             })}
           </ul>
           <div className="search">
-            <Form>
-              <Input
-                className="search-box"
-                type="text"
-                spellCheck="false"
-                placeholder="Tìm sản phấm"
-              />
-              <Button className="search-btn">
-                <i className="fa-solid fa-magnifying-glass"></i>
-              </Button>
+            <Form name="search" onFinish={(value) => handleFilter(value)}>
+              <Form.Item name="q">
+                <Row>
+                  <Col>
+                    <Input className="search-box" placeholder="Tìm sản phấm" />
+                  </Col>
+                  <Col>
+                    <Button className="search-btn" htmlType="submit">
+                      <i className="fa-solid fa-magnifying-glass"></i>
+                    </Button>
+                  </Col>
+                </Row>
+              </Form.Item>
             </Form>
           </div>
           <div className="header-tool">
             <div className="user">
-              <img src={user} alt="" />
+              <Link to="/my-profile">
+                <img src={user} alt="icon-user" />
+              </Link>
               <ul className="account-header">
-                {
+                {token.length ? (
                   <>
-                    <h3 className="full-name">{fullName}</h3>
+                    <h3 className="full-name">{`${userInfo.surname} ${userInfo.name}`}</h3>
                     <li>
                       <Link to="/my-profile">Thông tin tài khoản</Link>
                     </li>
@@ -291,7 +315,16 @@ const Navbar = () => {
                       </Button>
                     </li>
                   </>
-                }
+                ) : (
+                  <>
+                    <li>
+                      <Link to="/register">Đăng ký</Link>
+                    </li>
+                    <li>
+                      <Link to="/login">Đăng nhập</Link>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
             <div className="like">
@@ -301,13 +334,13 @@ const Navbar = () => {
             </div>
 
             <div className="cart">
-              <Badge count={total} showZero>
+              <Badge count={cart.length} showZero>
                 <Link to="/cart">
                   <img src={cartImg} alt="" />
                 </Link>
                 <div className="cart-drop">
                   <div className="cart-container">
-                    {total > 0 ? (
+                    {cart.length > 0 ? (
                       <>
                         <Row gutter={[32, 32]} className="border-bottom">
                           <Col span={4}>STT</Col>
@@ -333,9 +366,6 @@ const Navbar = () => {
                           alt=""
                         />
                         <p>Giỏ hàng của bạn trống</p>
-                        <Link to="/login" className="cart-login">
-                          Đăng nhập/Đăng ký
-                        </Link>
                         <div>
                           <Link to="/">Mua ngay</Link>
                         </div>
