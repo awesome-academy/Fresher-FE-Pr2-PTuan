@@ -48,55 +48,51 @@ const MyOrder = () => {
           <Col span={2}>Action</Col>
         </Row>
         {ordered.length > 0 ? (
-          ordered.map(({ status, cart, total, id }, index) => {
-            return (
-              <Row
-                className="border-bottom"
-                key={index}
-                align="middle"
-                justify="space-between"
-              >
-                <Col span={1}>{index + 1}</Col>
-                <Col span={15}>
-                  {cart.map((item, index) => {
-                    return (
-                      <Row gutter={[32, 32]} key={index} align="middle">
-                        <Col span={3}>
-                          <img
-                            style={{ width: '100%', height: '100%' }}
-                            src={item.image}
-                            alt={item.name}
-                          />
-                        </Col>
-                        <Col span={14}>{item.name}</Col>
-                        <Col span={4}>{`${item.size} / ${item.colorName}`}</Col>
-                        <Col span={3}>{item.amount}</Col>
-                      </Row>
-                    );
-                  })}
-                </Col>
-                <Col span={2} className="price">
-                  {formatNumber(total)}
-                </Col>
-                <Col span={2}>
-                  {status === 'pending' ? (
-                    <Tag color="warning">{status.toUpperCase()}</Tag>
-                  ) : (
-                    <Tag color="red">{status.toUpperCase()}</Tag>
-                  )}
-                </Col>
-                <Col span={2}>
-                  {status === 'pending' ? (
-                    <Button onClick={() => handleCancel(id)} type="link" danger>
-                      Hủy đơn
-                    </Button>
-                  ) : (
-                    ''
-                  )}
-                </Col>
-              </Row>
-            );
-          })
+          ordered.map(({ status, cart, total, id }, index) => (
+            <Row
+              className="border-bottom"
+              key={index}
+              align="middle"
+              justify="space-between"
+            >
+              <Col span={1}>{index + 1}</Col>
+              <Col span={15}>
+                {cart.map((item, index) => (
+                  <Row gutter={[32, 32]} key={index} align="middle">
+                    <Col span={3}>
+                      <img
+                        style={{ width: '100%', height: '100%' }}
+                        src={item.image}
+                        alt={item.name}
+                      />
+                    </Col>
+                    <Col span={14}>{item.name}</Col>
+                    <Col span={4}>{`${item.size} / ${item.colorName}`}</Col>
+                    <Col span={3}>{item.amount}</Col>
+                  </Row>
+                ))}
+              </Col>
+              <Col span={2} className="price">
+                {formatNumber(total)}
+              </Col>
+              <Col span={2}>
+                {status === 'pending' ? (
+                  <Tag color="warning">{status.toUpperCase()}</Tag>
+                ) : (
+                  <Tag color="red">{status.toUpperCase()}</Tag>
+                )}
+              </Col>
+              <Col span={2}>
+                {status === 'pending' ? (
+                  <Button onClick={() => handleCancel(id)} type="link" danger>
+                    Hủy đơn
+                  </Button>
+                ) : (
+                  ''
+                )}
+              </Col>
+            </Row>
+          ))
         ) : (
           <span>Bạn chưa mua đơn hàng nào cả </span>
         )}

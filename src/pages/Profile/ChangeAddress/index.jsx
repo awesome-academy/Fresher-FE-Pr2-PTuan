@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeUserInfo } from '../../../redux/actions';
 
 import { getCities, getDistricts, getWards } from '../../../redux/actions';
+import { getNameRegion, renderRegionOptions } from '../../../helper';
 
 function ChangeAddress() {
   const { userInfo } = useSelector((state) => state.userReducer);
@@ -29,15 +30,13 @@ function ChangeAddress() {
 
   const handleChangeLocation = (values) => {
     const { city, district, ward, address } = values;
-    const cityName = cityList.data.find(
-      (cityItem) => cityItem.code === city,
-    ).name;
-    const districtName = districtList.data.find(
-      (districtItem) => districtItem.code === district,
-    ).name;
-    const wardName = wardList.data.find(
-      (wardItem) => wardItem.code === ward,
-    ).name;
+
+    const cityName = getNameRegion(cityList, city);
+
+    const districtName = getNameRegion(districtList, district);
+
+    const wardName = getNameRegion(wardList, ward);
+
     const location = {
       city: {
         code: city,
@@ -97,27 +96,6 @@ function ChangeAddress() {
     }
   };
 
-  const renderCityOptions = () =>
-    cityList.data.map((cityItem) => (
-      <Select.Option key={cityItem.id} value={cityItem.code}>
-        {cityItem.name}
-      </Select.Option>
-    ));
-
-  const renderDistrictOptions = () =>
-    districtList.data.map((districtItem) => (
-      <Select.Option key={districtItem.id} value={districtItem.code}>
-        {districtItem.name}
-      </Select.Option>
-    ));
-
-  const renderWardOptions = () =>
-    wardList.data.map((wardItem) => (
-      <Select.Option key={wardItem.id} value={wardItem.code}>
-        {wardItem.name}
-      </Select.Option>
-    ));
-
   const renderChangeLocationForm = () => (
     <Form
       style={{ width: '100%' }}
@@ -146,7 +124,7 @@ function ChangeAddress() {
             locationForm.setFieldsValue({ ward: undefined });
           }}
         >
-          {renderCityOptions()}
+          {renderRegionOptions(cityList)}
         </Select>
       </Form.Item>
 
@@ -167,7 +145,7 @@ function ChangeAddress() {
             locationForm.setFieldsValue({ ward: undefined });
           }}
         >
-          {renderDistrictOptions()}
+          {renderRegionOptions(districtList)}
         </Select>
       </Form.Item>
 
@@ -181,7 +159,7 @@ function ChangeAddress() {
           },
         ]}
       >
-        <Select allowClear>{renderWardOptions()}</Select>
+        <Select allowClear>{renderRegionOptions(wardList)}</Select>
       </Form.Item>
 
       <Form.Item

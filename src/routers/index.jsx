@@ -3,6 +3,8 @@ import Register from '../pages/Register';
 import Login from '../pages/Login';
 import DetailProduct from '../pages/DetailProduct';
 import Cart from '../pages/Cart';
+import Checkout from '../pages/Checkout';
+import Complete from '../pages/Complete';
 
 import MyProfile from '../pages/Profile/MyProfile';
 import ChangeAddress from '../pages/Profile/ChangeAddress';
@@ -30,6 +32,14 @@ export const publicRoutes = [
   {
     path: '/cart',
     component: <Cart />,
+  },
+  {
+    path: '/checkout',
+    component: <Checkout />,
+  },
+  {
+    path: '/complete',
+    component: <Complete />,
   },
 ];
 
