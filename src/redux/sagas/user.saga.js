@@ -18,8 +18,8 @@ function* Login(action) {
       message: 'Đăng nhập thành công!',
     });
 
-    if (response.data.user.role === 'admin') {
-      callback('/admin');
+    if (response?.data?.user?.role === 'admin') {
+      callback('/admin/product-management');
     } else {
       callback('/');
     }
@@ -39,6 +39,8 @@ function* Login(action) {
 function* Register(action) {
   try {
     const { data, callback } = action.payload;
+    data.status = 'active';
+
     const response = yield authAPI.register(data);
     yield put({
       type: SUCCESS(USER_ACTION.SIGN_UP),
@@ -76,7 +78,61 @@ function* getUserInfoSaga(action) {
   }
 }
 
+function* changePassword(action) {
+  try {
+    const { userId, email, oldPassword, newPassword, callback } =
+      action.payload;
+
+    const { data } = yield authAPI.login({
+      email: email,
+      password: oldPassword,
+    });
+    if (data?.accessToken) {
+      yield authAPI.changePassword(userId, { password: newPassword });
+      yield openNotificationWithIcon({
+        type: 'success',
+        message: 'Thay đổi mật khẩu thành công',
+      });
+    }
+
+    callback();
+  } catch (errors) {
+    yield openNotificationWithIcon({
+      type: 'error',
+      message: 'Mật khẩu cũ không chính xác',
+    });
+  }
+}
+
+function* changeUserInfo(action) {
+  try {
+    const { userID, callback, ...rest } = action.payload;
+
+    const { data } = yield authAPI.updateInfo(userID, rest);
+
+    if (data) {
+      yield put({
+        type: SUCCESS(USER_ACTION.GET_USER_INFO),
+        payload: {
+          data,
+        },
+      });
+      callback && callback();
+    }
+  } catch (errors) {
+    yield put({
+      type: FAIL(USER_ACTION.CHANGE_USER_INFO),
+      payload: {
+        data: errors.message,
+      },
+    });
+  }
+}
+
 export default function* userSaga() {
   yield takeEvery(REQUEST(USER_ACTION.SIGN_IN), Login);
   yield takeEvery(REQUEST(USER_ACTION.SIGN_UP), Register);
+  yield takeEvery(REQUEST(USER_ACTION.GET_USER_INFO), getUserInfoSaga);
+  yield takeEvery(REQUEST(USER_ACTION.CHANGE_PASSWORD), changePassword);
+  yield takeEvery(REQUEST(USER_ACTION.CHANGE_USER_INFO), changeUserInfo);
 }

@@ -1,11 +1,15 @@
-import { getLocal, removeLocal, setLocal } from '../../helper';
+import {
+  getLocal,
+  openNotificationWithIcon,
+  removeLocal,
+  setLocal,
+} from '../../helper';
 import { FAIL, REQUEST, SUCCESS, USER_ACTION } from '../constants';
 
 const initialState = {
   token: getLocal('token') || '',
   userInfo: {},
   loading: false,
-  fullName: '',
 };
 
 function reducer(state = initialState, { type, payload }) {
@@ -50,6 +54,45 @@ function reducer(state = initialState, { type, payload }) {
         ...state,
         userInfo: {},
         loading: false,
+      };
+    case REQUEST(USER_ACTION.GET_USER_INFO):
+      return {
+        ...state,
+        loading: true,
+      };
+    case SUCCESS(USER_ACTION.GET_USER_INFO):
+      return {
+        ...state,
+        userInfo: payload.data,
+        loading: false,
+      };
+    case REQUEST(USER_ACTION.CHANGE_USER_INFO):
+      const { city, district, ward, address, paymentMethod } = payload;
+      return {
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          city,
+          district,
+          ward,
+          address,
+          paymentMethod,
+        },
+      };
+    case REQUEST(USER_ACTION.SIGN_OUT):
+      removeLocal('token');
+      removeLocal('user');
+      removeLocal('cart');
+
+      openNotificationWithIcon({
+        type: 'success',
+        message: 'Đăng xuất thành công',
+      });
+
+      return {
+        ...state,
+        userInfo: {},
+        token: '',
       };
     default:
       return state;
