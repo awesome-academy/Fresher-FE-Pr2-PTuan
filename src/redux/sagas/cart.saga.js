@@ -7,10 +7,10 @@ import { API_PATH } from '../../Service/constants';
 
 import { FAIL, REQUEST, SUCCESS, CART_ACTION } from '../constants';
 
-function* getOrderFromServer(action) {
+function* getOrder(action) {
   try {
     const { id } = action.payload;
-    const { data } = yield cartAPI.getOrderFromServe(id);
+    const { data } = yield cartAPI.getOrderById(id);
     console.log(data);
     yield put({
       type: SUCCESS(CART_ACTION.GET_ORDER),
@@ -84,6 +84,6 @@ function* cancerOrder(action) {
 
 export default function* cartSaga() {
   yield takeEvery(REQUEST(CART_ACTION.PUSH_CART), pushCartToServer);
-  yield takeEvery(REQUEST(CART_ACTION.GET_ORDER), getOrderFromServer);
+  yield takeEvery(REQUEST(CART_ACTION.GET_ORDER), getOrder);
   yield takeEvery(REQUEST(CART_ACTION.CANCEL_ORDER), cancerOrder);
 }
