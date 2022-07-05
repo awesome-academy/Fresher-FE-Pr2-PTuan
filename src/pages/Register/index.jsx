@@ -8,6 +8,7 @@ import { register } from '../../redux/actions';
 
 import '../Login/style.scss';
 import './style.scss';
+import { EMAIL_REGEX_VALIDATION, PHONE_REGEX_VALIDATION } from '../../constant';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const Register = () => {
     dispatch(
       register({
         data: rest,
+        status: 'active',
         callback: () => navigate('/login'),
       }),
     );
@@ -92,9 +94,7 @@ const Register = () => {
                         message: 'Vui lòng nhập Số Điện Thoại!',
                       },
                       {
-                        pattern: new RegExp(
-                          /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/,
-                        ),
+                        pattern: new RegExp(PHONE_REGEX_VALIDATION),
                         message: 'Số điện thoại không hợp lệ',
                       },
                     ]}
@@ -107,7 +107,7 @@ const Register = () => {
                     name="email"
                     rules={[
                       {
-                        pattern: new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}'),
+                        pattern: new RegExp(EMAIL_REGEX_VALIDATION),
                         message: 'Email không đúng',
                       },
                       {

@@ -1,4 +1,4 @@
-import { notification } from "antd";
+import { notification } from 'antd';
 
 export const openNotificationWithIcon = ({ type, message, description }) => {
   notification[type]({
@@ -20,24 +20,24 @@ export const createActionFail = (type, data = {}) => {
 export const logger = (reducer) => {
   return (preState, action) => {
     console.group(action.type);
-    console.log("preState: ", preState);
-    console.log("Action: ", action);
+    console.log('preState: ', preState);
+    console.log('Action: ', action);
     const newState = reducer(preState, action);
-    console.log("Next State: ", newState);
+    console.log('Next State: ', newState);
     console.groupEnd();
     return newState;
   };
 };
 
 export const formatNumber = (value = 0) => {
-  return value.toLocaleString("vi-VN", {
-    style: "currency",
-    currency: "VND",
+  return value.toLocaleString('vi-VN', {
+    style: 'currency',
+    currency: 'VND',
   });
 };
 
-export const getLocal = (value) => {
-  return JSON.parse(localStorage.getItem(value));
+export const getLocal = (value, defaultValue = null) => {
+  return JSON.parse(localStorage.getItem(value)) || null;
 };
 
 export const setLocal = ({ key, value }) => {
