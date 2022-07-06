@@ -19,7 +19,7 @@ function Filter() {
   const { products, loading } = useSelector((state) => state.productReducer);
   const dispatch = useDispatch();
 
-  const [checkedList, setCheckedList] = useState({
+  const [filterApplied, setFilterApplied] = useState({
     type: [],
     category: [],
     price: [],
@@ -38,14 +38,32 @@ function Filter() {
   }, []);
 
   useEffect(() => {
-    dispatch(filterProduct(checkedList));
+    dispatch(filterProduct(filterApplied));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [checkedList]);
+  }, [filterApplied]);
+
+  const handleFilter = (item, type) => {
+    if (type === 'type') setFilterApplied({ ...filterApplied, type: item });
+    else if (type === 'category')
+      setFilterApplied({ ...filterApplied, category: item });
+    else if (type === 'price')
+      setFilterApplied({
+        ...filterApplied,
+        price_gte: item[0] || 0,
+        price_lte: item[1] || Infinity,
+      });
+    else
+      setFilterApplied({
+        ...filterApplied,
+        _sort: item === 'default' ? null : 'price',
+        _order: item === 'default' ? null : item,
+      });
+  };
 
   const handlePagination = (page) => {
     dispatch(
       filterProduct({
-        ...checkedList,
+        ...filterApplied,
         _page: page,
         _limit: 16,
       }),

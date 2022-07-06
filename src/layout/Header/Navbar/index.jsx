@@ -4,6 +4,7 @@ import { Button, Badge, Row, Col, Form, Input } from 'antd';
 import { LogoutOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../../../redux/actions/user.action';
+import { filterProduct } from '../../../redux/actions/product.action';
 
 import './style.scss';
 import NavMenuDrop from '../NavMenuDrop';
@@ -246,7 +247,11 @@ const Navbar = () => {
       </Row>
     ));
 
-  const handleFilter = (value) => {};
+  const handleFilter = (value) => {
+    dispatch(filterProduct(value));
+    navigate(`/filter`);
+  };
+
   return (
     <div className="navbar">
       <div className="container wrapper-container">

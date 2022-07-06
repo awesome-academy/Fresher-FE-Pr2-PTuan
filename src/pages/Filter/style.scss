@@ -1,4 +1,4 @@
-@import '../../style/style.scss';
+@import "../../style/style.scss";
 .product-category {
   margin: 40px 0;
 
@@ -35,7 +35,7 @@
         flex-wrap: wrap;
         span {
           font-size: 1.4rem;
-          color: $white;
+          color: white;
           padding: 4px 12px;
           border: 1px solid transparent;
           background: $yellow;
