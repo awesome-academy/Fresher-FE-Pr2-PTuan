@@ -7,6 +7,9 @@ import Checkout from '../pages/Checkout';
 import Complete from '../pages/Complete';
 import Filter from '../pages/Filter';
 
+import ProductManagement from '../pages/admin/ProductManagement';
+import CreateProduct from '../pages/admin/CreateProduct';
+
 import MyProfile from '../pages/Profile/MyProfile';
 import ChangeAddress from '../pages/Profile/ChangeAddress';
 import ChangePassword from '../pages/Profile/ChangePassword';
@@ -49,6 +52,16 @@ export const publicRoutes = [
 ];
 
 export const privateRoutes = [
+  {
+    path: '/admin/product-management',
+    component: <ProductManagement />,
+    isAdmin: true,
+  },
+  {
+    path: '/admin/product-management/create',
+    component: <CreateProduct />,
+    isAdmin: true,
+  },
   {
     path: '/my-profile',
     component: <MyProfile />,

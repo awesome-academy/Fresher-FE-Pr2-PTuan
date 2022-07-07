@@ -10,10 +10,27 @@ const initialState = {
   token: getLocal('token') || '',
   userInfo: {},
   loading: false,
+  users: [],
 };
 
 function reducer(state = initialState, { type, payload }) {
   switch (type) {
+    case REQUEST(USER_ACTION.GET_ALL_USER):
+      return {
+        ...state,
+        loading: true,
+      };
+    case SUCCESS(USER_ACTION.GET_ALL_USER):
+      return {
+        ...state,
+        users: payload,
+        loading: false,
+      };
+    case FAIL(USER_ACTION.GET_ALL_USER):
+      return {
+        ...state,
+        loading: false,
+      };
     case REQUEST(USER_ACTION.SIGN_IN):
       return {
         ...state,

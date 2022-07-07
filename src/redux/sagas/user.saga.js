@@ -52,6 +52,7 @@ function* Register(action) {
     });
     callback();
   } catch (e) {
+    console.log(e);
     yield put({
       type: FAIL(USER_ACTION.SIGN_UP),
       payload: e.message,
@@ -129,10 +130,31 @@ function* changeUserInfo(action) {
   }
 }
 
+function* getAllUserFromServer() {
+  try {
+    const { data } = yield authAPI.getAllUsers();
+
+    if (data) {
+      yield put({
+        type: SUCCESS(USER_ACTION.GET_ALL_USER),
+        payload: data,
+      });
+    }
+  } catch (errors) {
+    yield put({
+      type: FAIL(USER_ACTION.GET_ALL_USER),
+      payload: {
+        data: errors.message,
+      },
+    });
+  }
+}
+
 export default function* userSaga() {
   yield takeEvery(REQUEST(USER_ACTION.SIGN_IN), Login);
   yield takeEvery(REQUEST(USER_ACTION.SIGN_UP), Register);
   yield takeEvery(REQUEST(USER_ACTION.GET_USER_INFO), getUserInfoSaga);
   yield takeEvery(REQUEST(USER_ACTION.CHANGE_PASSWORD), changePassword);
   yield takeEvery(REQUEST(USER_ACTION.CHANGE_USER_INFO), changeUserInfo);
+  yield takeEvery(REQUEST(USER_ACTION.GET_ALL_USER), getAllUserFromServer);
 }
