@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { v4 as uuidv4 } from 'uuid';
 
 import 'react-image-gallery/styles/css/image-gallery.css';
@@ -28,7 +27,7 @@ import { formatNumber, openNotificationWithIcon } from '../../helper';
 import { getProductDetail } from '../../redux/actions/product.action';
 import { addToCart } from '../../redux/actions/cart.action';
 import './style.scss';
-import { getCommentListAction, sendCommentAction } from '../../redux/actions';
+import { getCommentList, sendComment } from '../../redux/actions';
 
 function DetailProduct() {
   const { productDetails, loading } = useSelector(
@@ -50,6 +49,7 @@ function DetailProduct() {
 
   useEffect(() => {
     dispatch(getProductDetail({ id }));
+    dispatch(getCommentList({ productID: parseInt(id) }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
@@ -121,6 +121,13 @@ function DetailProduct() {
 
   const handleSendComentAndRating = (comment) => {
     if (userInfo.id) {
+      dispatch(
+        sendComment({
+          comment,
+          productID: parseInt(id),
+          email: userInfo.email,
+        }),
+      );
       formComment.resetFields();
     } else {
       openNotificationWithIcon({
