@@ -4,6 +4,7 @@ import { FAIL, REQUEST, SUCCESS, PRODUCT_ACTION } from '../constants';
 const initialState = {
   products: [],
   productDetails: {},
+  filter: {},
   loading: false,
 };
 
@@ -42,6 +43,20 @@ function reducer(state = initialState, { type, payload }) {
       return {
         ...state,
         userInfo: {},
+        loading: false,
+      };
+    case REQUEST(PRODUCT_ACTION.FILTER_PRODUCT):
+      return {
+        ...state,
+        filter: { ...state.filter, payload },
+        loading: true,
+      };
+    case SUCCESS(PRODUCT_ACTION.FILTER_PRODUCT):
+      const { data, pagination } = payload;
+      return {
+        ...state,
+        products: data,
+        filter: pagination,
         loading: false,
       };
     default:

@@ -6,3 +6,6 @@ export const getAllProduct = (payload) =>
 
 export const getProductDetail = (payload) =>
   createAction(REQUEST(PRODUCT_ACTION.GET_PRODUCT_INFO), payload);
+
+export const filterProduct = (payload) =>
+  createAction(REQUEST(PRODUCT_ACTION.FILTER_PRODUCT), payload);

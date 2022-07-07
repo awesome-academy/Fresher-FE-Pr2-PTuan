@@ -5,6 +5,7 @@ import DetailProduct from '../pages/DetailProduct';
 import Cart from '../pages/Cart';
 import Checkout from '../pages/Checkout';
 import Complete from '../pages/Complete';
+import Filter from '../pages/Filter';
 
 import MyProfile from '../pages/Profile/MyProfile';
 import ChangeAddress from '../pages/Profile/ChangeAddress';
@@ -40,6 +41,10 @@ export const publicRoutes = [
   {
     path: '/complete',
     component: <Complete />,
+  },
+  {
+    path: '/filter',
+    component: <Filter />,
   },
 ];
 
