@@ -7,4 +7,5 @@ export const authAPI = {
   getInfo: (data) => axios.get(`${API_PATH}/users/${data.id}`),
   changePassword: (id, data) => axios.patch(`${API_PATH}/users/${id}`, data),
   updateInfo: (id, data) => axios.patch(`${API_PATH}/users/${id}`, data),
+  getAllUsers: () => axios.get(`${API_PATH}/users`),
 };

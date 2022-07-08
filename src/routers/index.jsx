@@ -7,6 +7,7 @@ import Checkout from '../pages/Checkout';
 import Complete from '../pages/Complete';
 import Filter from '../pages/Filter';
 
+import UserManagement from '../pages/admin/UserManagement';
 import ProductManagement from '../pages/admin/ProductManagement';
 import CreateProduct from '../pages/admin/CreateProduct';
 
@@ -52,6 +53,11 @@ export const publicRoutes = [
 ];
 
 export const privateRoutes = [
+  {
+    path: '/admin/user-management',
+    component: <UserManagement />,
+    isAdmin: true,
+  },
   {
     path: '/admin/product-management',
     component: <ProductManagement />,
