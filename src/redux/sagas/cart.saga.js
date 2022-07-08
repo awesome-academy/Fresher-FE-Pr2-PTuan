@@ -11,7 +11,6 @@ function* getOrder(action) {
   try {
     const { id } = action.payload;
     const { data } = yield cartAPI.getOrderById(id);
-    console.log(data);
     yield put({
       type: SUCCESS(CART_ACTION.GET_ORDER),
       payload: data,
@@ -62,7 +61,6 @@ function* pushCartToServer(action) {
 function* cancerOrder(action) {
   try {
     const { status, id, userID } = action.payload;
-    console.log(status, id, userID);
     const result = yield axios.patch(`${API_PATH}/orders/${id}`, { status });
     if (result.data) {
       yield openNotificationWithIcon({

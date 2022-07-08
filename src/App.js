@@ -33,8 +33,11 @@ function App() {
         ))}
       </Route>
       {privateRoutes.map(({ isAdmin, path, component }, index) => (
-        <Route element={isAdmin ? <PrivateLayout /> : <ProfileLayout />}>
-          <Route key={index} path={path} element={component} />
+        <Route
+          element={isAdmin ? <PrivateLayout /> : <ProfileLayout />}
+          key={index}
+        >
+          <Route path={path} element={component} />
         </Route>
       ))}
     </Routes>
