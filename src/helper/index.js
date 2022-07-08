@@ -1,4 +1,4 @@
-import { notification } from 'antd';
+import { notification, Select } from 'antd';
 
 export const openNotificationWithIcon = ({ type, message, description }) => {
   notification[type]({
@@ -29,21 +29,33 @@ export const logger = (reducer) => {
   };
 };
 
-export const formatNumber = (value = 0) => {
-  return value.toLocaleString('vi-VN', {
+export const formatNumber = (value = 0) =>
+  value.toLocaleString('vi-VN', {
     style: 'currency',
     currency: 'VND',
   });
+
+export const getLocal = (value, defaultValue = null) =>
+  JSON.parse(localStorage.getItem(value)) || defaultValue;
+
+export const setLocal = ({ key, value }) =>
+  localStorage.setItem(key, JSON.stringify(value));
+
+export const removeLocal = (value) => localStorage.removeItem(value);
+
+export const renderRegionOptions = (regions) => {
+  return regions.data.map((region) => (
+    <Select.Option key={region.id} value={region.code}>
+      {region.name}
+    </Select.Option>
+  ));
 };
 
-export const getLocal = (value, defaultValue = null) => {
-  return JSON.parse(localStorage.getItem(value)) || null;
-};
+export const getNameRegion = (regions, location) =>
+  regions.data.find((item) => item.code === location).name;
 
-export const setLocal = ({ key, value }) => {
-  return localStorage.setItem(key, JSON.stringify(value));
-};
-
-export const removeLocal = (value) => {
-  return localStorage.removeItem(value);
-};
+export const handleCalculateTotalMoney = (cart) =>
+  cart.reduce(
+    (previousValue, item) => previousValue + item.amount * item.price,
+    0,
+  );

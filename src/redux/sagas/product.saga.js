@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 import { openNotificationWithIcon } from '../../helper';
 
 import { productAPI } from '../../Service';
@@ -61,8 +61,75 @@ function* filterProduct(action) {
   }
 }
 
+function* createProduct(action) {
+  try {
+    const { data } = yield axios.post(`${API_PATH}/products`, action.payload);
+    if (data) {
+      yield put({
+        type: REQUEST(PRODUCT_ACTION.GET_ALL_PRODUCT),
+      });
+      yield openNotificationWithIcon({
+        type: 'success',
+        message: 'Tạo mới sản phẩm thành công!',
+      });
+    }
+  } catch (errors) {
+    yield openNotificationWithIcon({
+      type: 'error',
+      message: 'Tạo mới sản phẩm thất bại',
+    });
+  }
+}
+
+function* updateProduct(action) {
+  try {
+    const { data, id } = action.payload;
+    const result = yield axios.patch(`${API_PATH}/products/${id}`, {
+      data,
+    });
+
+    yield put({
+      type: REQUEST(PRODUCT_ACTION.GET_ALL_PRODUCT),
+    });
+  } catch (errors) {
+    yield openNotificationWithIcon({
+      type: 'error',
+      message: 'Thất bại',
+    });
+  }
+}
+function* deleteProduct(action) {
+  try {
+    const { data } = yield axios.delete(
+      `${API_PATH}/products/${action.payload}`,
+    );
+    if (data) {
+      yield put({
+        type: REQUEST(PRODUCT_ACTION.GET_ALL_PRODUCT),
+      });
+      yield openNotificationWithIcon({
+        type: 'success',
+        message: 'Xóa sản phẩm thành công',
+      });
+    } else {
+      yield openNotificationWithIcon({
+        type: 'error',
+        message: 'Xóa sản phẩm thất bại',
+      });
+    }
+  } catch (errors) {
+    yield openNotificationWithIcon({
+      type: 'error',
+      message: 'Thất bại',
+    });
+  }
+}
+
 export default function* userSaga() {
   yield takeEvery(REQUEST(PRODUCT_ACTION.GET_ALL_PRODUCT), getAllProduct);
   yield takeEvery(REQUEST(PRODUCT_ACTION.GET_PRODUCT_INFO), getProductDetail);
   yield takeEvery(REQUEST(PRODUCT_ACTION.FILTER_PRODUCT), filterProduct);
+  yield takeLatest(REQUEST(PRODUCT_ACTION.CREATE_PRODUCT), createProduct);
+  yield takeLatest(REQUEST(PRODUCT_ACTION.UPDATE_PRODUCT), updateProduct);
+  yield takeLatest(REQUEST(PRODUCT_ACTION.DELETE_PRODUCT), deleteProduct);
 }

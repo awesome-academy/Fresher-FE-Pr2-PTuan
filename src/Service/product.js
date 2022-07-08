@@ -1,5 +1,5 @@
-import axios from "axios";
-import { API_PATH } from "./constants";
+import axios from 'axios';
+import { API_PATH } from './constants';
 
 export const productAPI = {
   getAllProduct: () => axios.get(`${API_PATH}/products`),

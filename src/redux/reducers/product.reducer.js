@@ -1,4 +1,3 @@
-import { getLocal, setLocal } from '../../helper';
 import { FAIL, REQUEST, SUCCESS, PRODUCT_ACTION } from '../constants';
 
 const initialState = {

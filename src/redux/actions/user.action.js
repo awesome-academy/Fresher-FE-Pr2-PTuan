@@ -17,3 +17,6 @@ export const getUserInfo = (payload) =>
 
 export const changeUserInfo = (payload) =>
   createAction(REQUEST(USER_ACTION.CHANGE_USER_INFO), payload);
+
+export const getAllUser = (payload) =>
+  createAction(REQUEST(USER_ACTION.GET_ALL_USER), payload);
