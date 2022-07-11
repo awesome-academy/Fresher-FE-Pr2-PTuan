@@ -16,6 +16,7 @@ import ChangeAddress from '../pages/Profile/ChangeAddress';
 import ChangePassword from '../pages/Profile/ChangePassword';
 import MyOrder from '../pages/Profile/MyOrder';
 import MyFavorite from '../pages/Profile/MyFavorite';
+import RevenueManagement from '../pages/admin/RevenueManagement';
 
 export const publicRoutes = [
   {
@@ -53,6 +54,11 @@ export const publicRoutes = [
 ];
 
 export const privateRoutes = [
+  {
+    path: '/admin/dashboard',
+    component: <RevenueManagement />,
+    isAdmin: true,
+  },
   {
     path: '/admin/user-management',
     component: <UserManagement />,
