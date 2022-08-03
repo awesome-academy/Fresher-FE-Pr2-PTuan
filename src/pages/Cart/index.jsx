@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 
-import { Table, Space, Button, Col, Row, Modal } from 'antd';
-import { formatNumber, openNotificationWithIcon } from '../../helper';
+import { Table, Space, Button, Col, Row, Modal } from "antd";
+import {
+  formatNumber,
+  handleCalculateTotalMoney,
+  openNotificationWithIcon,
+} from "../../helper";
 
-import './style.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import "./style.scss";
+import { useDispatch, useSelector } from "react-redux";
 import {
   changeAmountProduct,
   removeFromCart,
-} from '../../redux/actions/cart.action';
+} from "../../redux/actions/cart.action";
 
 function Cart() {
   const { cart } = useSelector((state) => state.cartReducer);
@@ -18,13 +22,6 @@ function Cart() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
-  let totalMoney = 0;
-
-  const handleCalculateTotalMoney = () =>
-    cart.reduce(
-      (previousValue, item) => previousValue + item.amount * item.price,
-      totalMoney,
-    );
 
   const dataSource = () =>
     cart.map((item, index) => ({
@@ -40,12 +37,12 @@ function Cart() {
   const handleRemoveCart = ({ id }) => {
     Modal.confirm({
       visible: visible,
-      title: 'Xác nhận',
+      title: "Xác nhận",
       icon: <ExclamationCircleOutlined />,
-      content: 'Xác nhận xóa sản phẩm ra khỏi giỏ hàng',
-      okText: 'Xóa',
-      okType: 'danger',
-      cancelText: 'Hủy',
+      content: "Xác nhận xóa sản phẩm ra khỏi giỏ hàng",
+      okText: "Xóa",
+      okType: "danger",
+      cancelText: "Hủy",
       onOk: () => {
         dispatch(removeFromCart({ id }));
         setVisible(false);
@@ -55,16 +52,16 @@ function Cart() {
 
   const columns = [
     {
-      key: 'key',
-      title: 'STT',
-      align: 'center',
+      key: "key",
+      title: "STT",
+      align: "center",
       render: (_, __, index) => <span>{index + 1}</span>,
     },
     {
-      title: 'Ảnh',
-      dataIndex: 'image',
-      key: 'image',
-      align: 'center',
+      title: "Ảnh",
+      dataIndex: "image",
+      key: "image",
+      align: "center",
       render: (_, { image }) => (
         <div className="product-img">
           <img src={image} alt="product" />
@@ -72,16 +69,16 @@ function Cart() {
       ),
     },
     {
-      title: 'Sản phẩm',
-      dataIndex: 'name',
-      key: 'name',
-      align: 'center',
+      title: "Sản phẩm",
+      dataIndex: "name",
+      key: "name",
+      align: "center",
     },
     {
-      title: 'Mô tả',
-      dataIndex: 'color',
-      key: 'color',
-      align: 'center',
+      title: "Mô tả",
+      dataIndex: "color",
+      key: "color",
+      align: "center",
       render: (_, { colorName, size }) => (
         <>
           <div>Màu: {colorName}</div>
@@ -90,51 +87,49 @@ function Cart() {
       ),
     },
     {
-      title: 'Đơn giá',
-      dataIndex: 'price',
-      key: 'price',
-      align: 'center',
+      title: "Đơn giá",
+      dataIndex: "price",
+      key: "price",
+      align: "center",
       render: (_, { price }) => (
         <span className="price-product">{formatNumber(price)}</span>
       ),
     },
     {
-      title: 'Số lượng',
-      dataIndex: 'amount',
-      key: 'amount',
-      align: 'center',
-      render: (_, { amount, id }) => {
-        return (
-          <>
-            <Button onClick={() => handleChangeAmount({ id: id, type: 'sub' })}>
-              -
-            </Button>
-            <span style={{ margin: '0 0.5rem' }}>{amount}</span>
-            <Button onClick={() => handleChangeAmount({ id: id, type: 'add' })}>
-              +
-            </Button>
-          </>
-        );
-      },
+      title: "Số lượng",
+      dataIndex: "amount",
+      key: "amount",
+      align: "center",
+      render: (_, { amount, id }) => (
+        <>
+          <Button onClick={() => handleChangeAmount({ id: id, type: "sub" })}>
+            -
+          </Button>
+          <span style={{ margin: "0 0.5rem" }}>{amount}</span>
+          <Button onClick={() => handleChangeAmount({ id: id, type: "add" })}>
+            +
+          </Button>
+        </>
+      ),
     },
     {
-      title: 'Thành tiền',
-      dataIndex: 'total',
-      key: 'total',
-      align: 'center',
+      title: "Thành tiền",
+      dataIndex: "total",
+      key: "total",
+      align: "center",
       render: (_, { price, amount }) => (
         <span className="price-product">{formatNumber(price * amount)}</span>
       ),
     },
     {
-      align: 'center',
-      title: 'Action',
-      key: 'action',
+      align: "center",
+      title: "Action",
+      key: "action",
       render: (_, { id }) => (
         <Button danger type="link" onClick={() => handleRemoveCart({ id })}>
           <i
             className="fa-solid fa-trash-can"
-            style={{ marginRight: '5px' }}
+            style={{ marginRight: "5px" }}
           ></i>
           Xoá
         </Button>
@@ -143,14 +138,14 @@ function Cart() {
   ];
 
   const handleCheckOut = () => {
-    if (token !== '') {
-      navigate('/checkout');
+    if (token !== "") {
+      navigate("/checkout");
     } else {
       openNotificationWithIcon({
-        type: 'error',
-        message: 'Bạn phải đăng nhập trước!',
+        type: "error",
+        message: "Bạn phải đăng nhập trước!",
       });
-      navigate('/login');
+      navigate("/login");
     }
   };
   return (
@@ -173,10 +168,10 @@ function Cart() {
             />
           </Col>
           <Col span={6}>
-            <Row justify="space-between" style={{ marginTop: '1rem' }}>
+            <Row justify="space-between" style={{ marginTop: "1rem" }}>
               <div>Tổng cộng</div>
               <div className="price-product">
-                {formatNumber(handleCalculateTotalMoney())}
+                {formatNumber(handleCalculateTotalMoney(cart))}
               </div>
               <Button className="buy-now button" onClick={handleCheckOut}>
                 Thanh toán

@@ -1,7 +1,7 @@
-import { createAction } from '../../helper';
-import { REQUEST, PRODUCT_ACTION } from '../constants';
+import { createAction } from "../../helper";
+import { REQUEST, PRODUCT_ACTION } from "../constants";
 
-export const getAllProduct = (payload) =>
+export const getAll = (payload) =>
   createAction(REQUEST(PRODUCT_ACTION.GET_ALL_PRODUCT), payload);
 
 export const getProductDetail = (payload) =>

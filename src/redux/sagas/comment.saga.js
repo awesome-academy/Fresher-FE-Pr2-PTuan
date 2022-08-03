@@ -1,9 +1,9 @@
-import { put, takeEvery } from 'redux-saga/effects';
-import axios from 'axios';
-import { REQUEST, SUCCESS, FAIL, COMMENT_ACTION } from '../constants';
+import { put, takeEvery } from "redux-saga/effects";
+import axios from "axios";
+import { REQUEST, SUCCESS, FAIL, COMMENT_ACTION } from "../constants";
 
-import { API_PATH } from '../../Service/constants';
-import { openNotificationWithIcon } from '../../helper';
+import { API_PATH } from "../../Service/constants";
+import { openNotificationWithIcon } from "../../helper";
 
 function* getCommentList(action) {
   try {
@@ -24,7 +24,7 @@ function* getCommentList(action) {
   } catch (error) {
     yield put({
       type: FAIL(COMMENT_ACTION.GET_COMMENT_LIST),
-      payload: 'Lấy data lỗi',
+      payload: "Lấy data lỗi",
     });
   }
 }
@@ -39,8 +39,8 @@ function* sendComment({ payload }) {
     });
     if (data) {
       yield openNotificationWithIcon({
-        type: 'success',
-        message: 'Gửi bình luận thành công!',
+        type: "success",
+        message: "Gửi bình luận thành công!",
       });
       yield put({
         type: REQUEST(COMMENT_ACTION.GET_COMMENT_LIST),
@@ -51,12 +51,12 @@ function* sendComment({ payload }) {
     }
   } catch (error) {
     yield openNotificationWithIcon({
-      type: 'error',
-      message: 'Gửi bình luận thất bại!',
+      type: "error",
+      message: "Gửi bình luận thất bại!",
     });
     yield put({
       type: FAIL(COMMENT_ACTION.SEND_COMMENT),
-      payload: 'Lấy data lỗi',
+      payload: "Lấy data lỗi",
     });
   }
 }

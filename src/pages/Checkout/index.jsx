@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   Space,
@@ -14,24 +14,24 @@ import {
   Badge,
   Spin,
   notification,
-} from 'antd';
+} from "antd";
 import {
   formatNumber,
   getNameRegion,
   handleCalculateTotalMoney,
   renderRegionOptions,
-} from '../../helper';
-import { listWallet } from './data.checkout';
-import Image from '../../assets/product.webp';
+} from "../../helper";
+import { listImages } from "./data.checkout";
+import Image from "../../assets/product.webp";
 
-import './style.scss';
+import "./style.scss";
 import {
   getCities,
   getDistricts,
   getWards,
   changeUserInfo,
   pushCartToServer,
-} from '../../redux/actions/';
+} from "../../redux/actions/";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -39,17 +39,17 @@ function Cart() {
   const { cart } = useSelector((state) => state.cartReducer);
   const { userInfo } = useSelector((state) => state.userReducer);
   const { cityList, districtList, wardList } = useSelector(
-    (state) => state.locationReducer,
+    (state) => state.locationReducer
   );
   const [form] = Form.useForm();
-  const [paymentMethod, setPaymentMethod] = useState(listWallet[0].title);
+  const [paymentMethod, setPaymentMethod] = useState(listImages[0].title);
 
   const renderChecklist = () =>
-    listWallet.map((item) => (
+    listImages.map((item) => (
       <Radio value={item.title} key={item.id}>
         <Col>
           <Row span={24}>
-            <img src={item.url} alt="icon" style={{ marginRight: '10px' }} />
+            <img src={item.url} alt="icon" style={{ marginRight: "10px" }} />
             <h4>{item.title}</h4>
           </Row>
           <Row>
@@ -71,8 +71,8 @@ function Cart() {
         userInfo,
         total: handleCalculateTotalMoney(cart),
         cart,
-        callback: () => navigate('/complete'),
-      }),
+        callback: () => navigate("/complete"),
+      })
     );
 
     if (!userInfo.location) {
@@ -103,7 +103,7 @@ function Cart() {
           userID: userInfo.id,
           paymentMethod,
           location,
-        }),
+        })
       );
     }
   };
@@ -113,7 +113,7 @@ function Cart() {
       <Row gutter={16} align="middle" key={index}>
         <Col span={3}>
           <Badge count={item.amount}>
-            <img src={item.image} style={{ width: '100%' }} alt="product" />
+            <img src={item.image} style={{ width: "100%" }} alt="product" />
           </Badge>
         </Col>
         <Col span={14}>
@@ -153,7 +153,7 @@ function Cart() {
           rules={[
             {
               required: true,
-              message: 'Vui lòng chọn Tỉnh/Thành phố của bạn',
+              message: "Vui lòng chọn Tỉnh/Thành phố của bạn",
             },
           ]}
         >
@@ -179,7 +179,7 @@ function Cart() {
           rules={[
             {
               required: true,
-              message: 'Vui lòng chọn Quận/Huyện của bạn',
+              message: "Vui lòng chọn Quận/Huyện của bạn",
             },
           ]}
         >
@@ -203,7 +203,7 @@ function Cart() {
           rules={[
             {
               required: true,
-              message: 'Vui lòng chọn Phường/Xã của bạn',
+              message: "Vui lòng chọn Phường/Xã của bạn",
             },
           ]}
         >
@@ -217,7 +217,7 @@ function Cart() {
         rules={[
           {
             required: true,
-            message: 'Vui lòng nhập địa chỉ cụ thể của bạn!',
+            message: "Vui lòng nhập địa chỉ cụ thể của bạn!",
           },
         ]}
       >
@@ -248,7 +248,7 @@ function Cart() {
                 rules={[
                   {
                     required: true,
-                    message: 'Vui lòng nhập tên',
+                    message: "Vui lòng nhập tên",
                   },
                 ]}
               >
@@ -260,7 +260,7 @@ function Cart() {
                 rules={[
                   {
                     required: true,
-                    message: 'Vui lòng nhập số điên thoại',
+                    message: "Vui lòng nhập số điên thoại",
                   },
                 ]}
               >

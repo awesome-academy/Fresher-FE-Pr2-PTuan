@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import { Form, Input, Button, Row, Col } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { changePassword } from '../../../redux/actions/user.action';
+import { Form, Input, Button, Row, Col } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { changePassword } from "../../../redux/actions/user.action";
 
 const ChangePassword = () => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const ChangePassword = () => {
         oldPassword: values.oldPassword,
         newPassword: values.newPassword,
         callback: () => form.resetFields(),
-      }),
+      })
     );
   };
 
@@ -29,7 +29,7 @@ const ChangePassword = () => {
       <div className="profile-content">
         <Form
           name="changePassword"
-          layout={'vertical'}
+          layout={"vertical"}
           onFinish={handleChangePassword}
           autoComplete="off"
           form={form}
@@ -40,11 +40,11 @@ const ChangePassword = () => {
             rules={[
               {
                 required: true,
-                message: 'Vui lòng nhập Password!',
+                message: "Vui lòng nhập Password!",
               },
               {
                 min: 6,
-                message: 'Mật khẩu phải có độ dài từ 6 ký tự trở lên',
+                message: "Mật khẩu phải có độ dài từ 6 ký tự trở lên",
               },
             ]}
           >
@@ -58,11 +58,11 @@ const ChangePassword = () => {
             rules={[
               {
                 required: true,
-                message: 'Vui lòng nhập Password!',
+                message: "Vui lòng nhập Password!",
               },
               {
                 min: 6,
-                message: 'Mật khẩu phải có độ dài từ 6 ký tự trở lên',
+                message: "Mật khẩu phải có độ dài từ 6 ký tự trở lên",
               },
             ]}
           >
@@ -72,18 +72,18 @@ const ChangePassword = () => {
           <Form.Item
             name="confirm"
             label="Confirm Password"
-            dependencies={['password']}
+            dependencies={["password"]}
             hasFeedback
             rules={[
               ({ getFieldValue }) => ({
                 validator(_, value) {
-                  if (!value || getFieldValue('newPassword') === value) {
+                  if (!value || getFieldValue("newPassword") === value) {
                     return Promise.resolve();
                   }
                   return Promise.reject(
                     new Error(
-                      'The two passwords that you entered do not match!',
-                    ),
+                      "The two passwords that you entered do not match!"
+                    )
                   );
                 },
               }),

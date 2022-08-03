@@ -1,4 +1,4 @@
-@import '../../../style/style.scss';
+@import "../../../style/style.scss";
 
 .list-blog {
   margin-top: 2.5rem;
@@ -16,7 +16,6 @@
       height: 100%;
     }
   }
-
   .box-infor {
     background-color: $light;
     padding: 1rem;
@@ -28,10 +27,8 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
       padding-bottom: 4px;
-
       a {
         color: $black;
-
         &:hover {
           color: $yellow;
         }
@@ -46,7 +43,6 @@
       overflow: hidden;
       padding-bottom: 4px;
     }
-
     .blog-time {
       i {
         margin: 0 4px;
@@ -56,7 +52,6 @@
       color: $gray;
     }
   }
-
   .swiper {
     &:hover {
       .swiper-button-prev {
@@ -72,7 +67,6 @@
         @include animation(hoverleft, 0.2s, ease-in, 1);
       }
     }
-
     &:hover {
       .swiper-button-next {
         display: block;
@@ -87,7 +81,6 @@
         @include animation(hoverright, 0.2s, ease-in, 1);
       }
     }
-
     .swiper-button-next,
     .swiper-button-prev {
       transition: all 0.3s;
@@ -97,21 +90,19 @@
       width: 34px;
       height: 34px;
     }
-
     .swiper-button-next {
       &::after {
         display: none;
       }
       background-size: contain;
-      background-image: url('https://pngroyale.com/next-button-download-transparent-png-image/');
+      background-image: url("https://pngroyale.com/next-button-download-transparent-png-image/");
     }
-
     .swiper-button-prev {
       &::after {
         display: none;
       }
       background-size: contain;
-      background-image: url('https://pngroyale.com/next-button-download-transparent-png-image/');
+      background-image: url("https://pngroyale.com/next-button-download-transparent-png-image/");
     }
   }
 }

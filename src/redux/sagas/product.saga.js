@@ -1,11 +1,11 @@
-import axios from 'axios';
-import { put, takeEvery, takeLatest } from 'redux-saga/effects';
-import { openNotificationWithIcon } from '../../helper';
+import axios from "axios";
+import { put, takeEvery } from "redux-saga/effects";
+import { openNotificationWithIcon } from "../../helper";
 
-import { productAPI } from '../../Service';
-import { API_PATH } from '../../Service/constants';
+import { productAPI } from "../../Service";
+import { API_PATH } from "../../Service/constants";
 
-import { FAIL, REQUEST, SUCCESS, PRODUCT_ACTION } from '../constants';
+import { FAIL, REQUEST, SUCCESS, PRODUCT_ACTION } from "../constants";
 
 function* getAllProduct() {
   try {
@@ -55,8 +55,8 @@ function* filterProduct(action) {
     });
   } catch (errors) {
     yield openNotificationWithIcon({
-      type: 'error',
-      message: 'Thất bại',
+      type: "error",
+      message: "Thất bại",
     });
   }
 }
@@ -69,14 +69,14 @@ function* createProduct(action) {
         type: REQUEST(PRODUCT_ACTION.GET_ALL_PRODUCT),
       });
       yield openNotificationWithIcon({
-        type: 'success',
-        message: 'Tạo mới sản phẩm thành công!',
+        type: "success",
+        message: "Tạo mới sản phẩm thành công!",
       });
     }
   } catch (errors) {
     yield openNotificationWithIcon({
-      type: 'error',
-      message: 'Tạo mới sản phẩm thất bại',
+      type: "error",
+      message: "Tạo mới sản phẩm thất bại",
     });
   }
 }
@@ -84,7 +84,7 @@ function* createProduct(action) {
 function* updateProduct(action) {
   try {
     const { data, id } = action.payload;
-    const result = yield axios.patch(`${API_PATH}/products/${id}`, {
+    const result = yield axios.get(`${API_PATH}/products/${id}`, {
       data,
     });
 
@@ -93,34 +93,29 @@ function* updateProduct(action) {
     });
   } catch (errors) {
     yield openNotificationWithIcon({
-      type: 'error',
-      message: 'Thất bại',
+      type: "error",
+      message: "Thất bại",
     });
   }
 }
 function* deleteProduct(action) {
   try {
     const { data } = yield axios.delete(
-      `${API_PATH}/products/${action.payload}`,
+      `${API_PATH}/products/${action.payload}`
     );
     if (data) {
       yield put({
         type: REQUEST(PRODUCT_ACTION.GET_ALL_PRODUCT),
       });
       yield openNotificationWithIcon({
-        type: 'success',
-        message: 'Xóa sản phẩm thành công',
-      });
-    } else {
-      yield openNotificationWithIcon({
-        type: 'error',
-        message: 'Xóa sản phẩm thất bại',
+        type: "success",
+        message: "Xóa sản phẩm thành công",
       });
     }
   } catch (errors) {
     yield openNotificationWithIcon({
-      type: 'error',
-      message: 'Thất bại',
+      type: "error",
+      message: "Thất bại",
     });
   }
 }
@@ -129,7 +124,7 @@ export default function* userSaga() {
   yield takeEvery(REQUEST(PRODUCT_ACTION.GET_ALL_PRODUCT), getAllProduct);
   yield takeEvery(REQUEST(PRODUCT_ACTION.GET_PRODUCT_INFO), getProductDetail);
   yield takeEvery(REQUEST(PRODUCT_ACTION.FILTER_PRODUCT), filterProduct);
-  yield takeLatest(REQUEST(PRODUCT_ACTION.CREATE_PRODUCT), createProduct);
-  yield takeLatest(REQUEST(PRODUCT_ACTION.UPDATE_PRODUCT), updateProduct);
-  yield takeLatest(REQUEST(PRODUCT_ACTION.DELETE_PRODUCT), deleteProduct);
+  yield takeEvery(REQUEST(PRODUCT_ACTION.CREATE_PRODUCT), createProduct);
+  yield takeEvery(REQUEST(PRODUCT_ACTION.UPDATE_PRODUCT), updateProduct);
+  yield takeEvery(REQUEST(PRODUCT_ACTION.DELETE_PRODUCT), deleteProduct);
 }

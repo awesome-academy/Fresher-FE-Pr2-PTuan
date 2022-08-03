@@ -1,1 +1,1 @@
-export const API_PATH = 'http://localhost:8888/api';
+export const API_PATH = 'https://yody-api.herokuapp.com';

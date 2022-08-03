@@ -34,34 +34,30 @@ const services = [
     subtitlelight_left: "Đổi sửa ",
   },
 ];
-const Service = () => {
-  return (
-    <div className="service">
-      <Row gutter={[32, 32]}>
-        {services.map((service, index) => {
-          return (
-            <Col xs={24} sm={12} lg={6} key={index}>
-              <Row>
-                <img src={service.img} alt="photos" />
-                <div className="description">
-                  <div className="description-title">{service.title}</div>
-                  <div className="description-sub-title">
-                    <span className="description-sub-title-light">
-                      {service.subtitlelight_left}
-                    </span>
-                    {service.subtitle}
-                    <span className="description-sub-title-light">
-                      {service.subtitlelight}
-                    </span>
-                  </div>
-                </div>
-              </Row>
-            </Col>
-          );
-        })}
-      </Row>
-    </div>
-  );
-};
+const Service = () => (
+  <div className="service">
+    <Row gutter={[32, 32]}>
+      {services.map((service, index) => (
+        <Col xs={24} sm={12} lg={6} key={index}>
+          <Row>
+            <img src={service.img} alt="photos" />
+            <div className="description">
+              <div className="description-title">{service.title}</div>
+              <div className="description-sub-title">
+                <span className="description-sub-title-light">
+                  {service.subtitlelight_left}
+                </span>
+                {service.subtitle}
+                <span className="description-sub-title-light">
+                  {service.subtitlelight}
+                </span>
+              </div>
+            </div>
+          </Row>
+        </Col>
+      ))}
+    </Row>
+  </div>
+);
 
 export default Service;

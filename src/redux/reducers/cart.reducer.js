@@ -1,8 +1,8 @@
-import { getLocal, removeLocal, setLocal } from '../../helper';
-import { FAIL, REQUEST, SUCCESS, CART_ACTION } from '../constants';
+import { getLocal, removeLocal, setLocal } from "../../helper";
+import { FAIL, REQUEST, SUCCESS, CART_ACTION } from "../constants";
 
 const initialState = {
-  cart: getLocal('cart') || [],
+  cart: getLocal("cart") || [],
   ordered: [],
   loading: false,
 };
@@ -22,15 +22,14 @@ function reducer(state = initialState, { type, payload }) {
       };
     case REQUEST(CART_ACTION.CHANGE_AMOUNT_PRODUCT):
       const { id, type } = payload;
-
       const index = state.cart.findIndex((item) => item.id === id);
       if (index !== -1) {
-        if (type === 'add') state.cart[index].amount++;
-        if (type === 'sub') {
+        if (type === "add") state.cart[index].amount++;
+        if (type === "sub") {
           if (state.cart[index].amount > 1) state.cart[index].amount--;
         }
       }
-      setLocal({ key: 'cart', value: state.cart });
+      setLocal({ key: "cart", value: state.cart });
       return {
         ...state,
         cart: state.cart,
@@ -43,25 +42,25 @@ function reducer(state = initialState, { type, payload }) {
         (item) =>
           item.productID === productID &&
           item.size === size &&
-          item.color === color,
+          item.color === color
       );
 
       if (result !== -1) {
         state.cart[result].amount += amount;
-        setLocal({ key: 'cart', value: [...state.cart] });
+        setLocal({ key: "cart", value: [...state.cart] });
         return {
           ...state,
           cart: [...state.cart],
         };
       } else {
-        setLocal({ key: 'cart', value: [...state.cart, payload] });
+        setLocal({ key: "cart", value: [...state.cart, payload] });
         return {
           ...state,
           cart: [...state.cart, payload],
         };
       }
     case REQUEST(CART_ACTION.CLEAR_CART):
-      removeLocal('cart');
+      removeLocal("cart");
       return {
         ...state,
         cart: [],
@@ -69,10 +68,10 @@ function reducer(state = initialState, { type, payload }) {
     // Get detail
     case REQUEST(CART_ACTION.REMOVE_FROM_CART):
       const existingProductIndex = state.cart.findIndex(
-        (item) => item.id === payload.id,
+        (item) => item.id === payload.id
       );
       state.cart.splice(existingProductIndex, 1);
-      setLocal({ key: 'cart', value: state.cart });
+      setLocal({ key: "cart", value: state.cart });
       return {
         ...state,
         cart: state.cart,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Col,
@@ -8,17 +8,17 @@ import {
   Select,
   Input,
   Space,
-} from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeUserInfo } from '../../../redux/actions';
+} from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { changeUserInfo } from "../../../redux/actions";
 
-import { getCities, getDistricts, getWards } from '../../../redux/actions';
-import { getNameRegion, renderRegionOptions } from '../../../helper';
+import { getCities, getDistricts, getWards } from "../../../redux/actions";
+import { getNameRegion, renderRegionOptions } from "../../../helper";
 
 function ChangeAddress() {
   const { userInfo } = useSelector((state) => state.userReducer);
   const { cityList, districtList, wardList } = useSelector(
-    (state) => state.locationReducer,
+    (state) => state.locationReducer
   );
   const dispatch = useDispatch();
   const [isChangeLocation, setIsChangeLocation] = useState(false);
@@ -56,12 +56,12 @@ function ChangeAddress() {
       changeUserInfo({
         userID: userInfo.id,
         location,
-      }),
+      })
     );
     notification.success({
-      message: 'Thay đổi thành công',
+      message: "Thay đổi thành công",
 
-      description: 'Địa chỉ của bạn đã được thay đổi',
+      description: "Địa chỉ của bạn đã được thay đổi",
     });
     locationForm.resetFields();
     setIsChangeLocation(false);
@@ -98,7 +98,7 @@ function ChangeAddress() {
 
   const renderChangeLocationForm = () => (
     <Form
-      style={{ width: '100%' }}
+      style={{ width: "100%" }}
       form={locationForm}
       labelCol={{ span: 4 }}
       wrapperCol={{ span: 7 }}
@@ -112,7 +112,7 @@ function ChangeAddress() {
         rules={[
           {
             required: true,
-            message: 'Vui lòng chọn Tỉnh/Thành phố của bạn',
+            message: "Vui lòng chọn Tỉnh/Thành phố của bạn",
           },
         ]}
       >
@@ -134,7 +134,7 @@ function ChangeAddress() {
         rules={[
           {
             required: true,
-            message: 'Vui lòng chọn Quận/Huyện của bạn',
+            message: "Vui lòng chọn Quận/Huyện của bạn",
           },
         ]}
       >
@@ -155,7 +155,7 @@ function ChangeAddress() {
         rules={[
           {
             required: true,
-            message: 'Vui lòng chọn Phường/Xã của bạn',
+            message: "Vui lòng chọn Phường/Xã của bạn",
           },
         ]}
       >
@@ -168,7 +168,7 @@ function ChangeAddress() {
         rules={[
           {
             required: true,
-            message: 'Vui lòng nhập địa chỉ cụ thể của bạn!',
+            message: "Vui lòng nhập địa chỉ cụ thể của bạn!",
           },
         ]}
       >

@@ -1,97 +1,97 @@
-import Home from '../pages/Home';
-import Register from '../pages/Register';
-import Login from '../pages/Login';
-import DetailProduct from '../pages/DetailProduct';
-import Cart from '../pages/Cart';
-import Checkout from '../pages/Checkout';
-import Complete from '../pages/Complete';
-import Filter from '../pages/Filter';
+import Home from "../pages/Home";
+import Register from "../pages/Register";
+import Login from "../pages/Login";
+import DetailProduct from "../pages/DetailProduct";
+import Cart from "../pages/Cart";
+import Checkout from "../pages/Checkout";
+import Complete from "../pages/Complete";
+import Filter from "../pages/Filter";
 
-import UserManagement from '../pages/admin/UserManagement';
-import ProductManagement from '../pages/admin/ProductManagement';
-import CreateProduct from '../pages/admin/CreateProduct';
+import UserManagement from "../pages/admin/UserManagement";
+import ProductManagement from "../pages/admin/ProductManagement";
+import CreateProduct from "../pages/admin/CreateProduct";
 
-import MyProfile from '../pages/Profile/MyProfile';
-import ChangeAddress from '../pages/Profile/ChangeAddress';
-import ChangePassword from '../pages/Profile/ChangePassword';
-import MyOrder from '../pages/Profile/MyOrder';
-import MyFavorite from '../pages/Profile/MyFavorite';
-import RevenueManagement from '../pages/admin/RevenueManagement';
+import MyProfile from "../pages/Profile/MyProfile";
+import ChangeAddress from "../pages/Profile/ChangeAddress";
+import ChangePassword from "../pages/Profile/ChangePassword";
+import MyOrder from "../pages/Profile/MyOrder";
+import MyFavorite from "../pages/Profile/MyFavorite";
+import RevenueManagement from "../pages/admin/RevenueManagement";
 
 export const publicRoutes = [
   {
-    path: '/',
+    path: "/",
     component: <Home />,
   },
   {
-    path: '/register',
+    path: "/register",
     component: <Register />,
   },
   {
-    path: '/login',
+    path: "/login",
     component: <Login />,
   },
   {
-    path: '/detail/:id',
+    path: "/detail/:id",
     component: <DetailProduct />,
   },
   {
-    path: '/cart',
+    path: "/cart",
     component: <Cart />,
   },
   {
-    path: '/checkout',
+    path: "/checkout",
     component: <Checkout />,
   },
   {
-    path: '/complete',
+    path: "/complete",
     component: <Complete />,
   },
   {
-    path: '/filter',
+    path: "/filter",
     component: <Filter />,
   },
 ];
 
 export const privateRoutes = [
   {
-    path: '/admin/dashboard',
+    path: "/admin/dashboard",
     component: <RevenueManagement />,
     isAdmin: true,
   },
   {
-    path: '/admin/user-management',
+    path: "/admin/user-management",
     component: <UserManagement />,
     isAdmin: true,
   },
   {
-    path: '/admin/product-management',
+    path: "/admin/product-management",
     component: <ProductManagement />,
     isAdmin: true,
   },
   {
-    path: '/admin/product-management/create',
+    path: "/admin/product-management/create",
     component: <CreateProduct />,
     isAdmin: true,
   },
   {
-    path: '/my-profile',
+    path: "/my-profile",
     component: <MyProfile />,
   },
   {
-    path: '/my-address',
+    path: "/my-address",
     component: <ChangeAddress />,
   },
   {
-    path: '/change-password',
+    path: "/change-password",
     component: <ChangePassword />,
   },
   {
-    path: '/my-order',
+    path: "/my-order",
     component: <MyOrder />,
   },
   {
-    path: '/favorite-product',
+    path: "/favorite-product",
     component: <MyFavorite />,
   },
 ];

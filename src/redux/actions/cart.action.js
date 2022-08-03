@@ -1,7 +1,7 @@
-import { createAction } from '../../helper';
-import { REQUEST, CART_ACTION } from '../constants';
+import { createAction } from "../../helper";
+import { REQUEST, CART_ACTION } from "../constants";
 
-export const getOrderById = (payload) =>
+export const getOrderFromServer = (payload) =>
   createAction(REQUEST(CART_ACTION.GET_ORDER), payload);
 
 export const addToCart = (payload) =>

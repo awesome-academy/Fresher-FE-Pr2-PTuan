@@ -1,4 +1,4 @@
-import { notification, Select } from 'antd';
+import { notification, Select } from "antd";
 
 export const openNotificationWithIcon = ({ type, message, description }) => {
   notification[type]({
@@ -20,19 +20,19 @@ export const createActionFail = (type, data = {}) => {
 export const logger = (reducer) => {
   return (preState, action) => {
     console.group(action.type);
-    console.log('preState: ', preState);
-    console.log('Action: ', action);
+    console.log("preState: ", preState);
+    console.log("Action: ", action);
     const newState = reducer(preState, action);
-    console.log('Next State: ', newState);
+    console.log("Next State: ", newState);
     console.groupEnd();
     return newState;
   };
 };
 
 export const formatNumber = (value = 0) =>
-  value.toLocaleString('vi-VN', {
-    style: 'currency',
-    currency: 'VND',
+  value.toLocaleString("vi-VN", {
+    style: "currency",
+    currency: "VND",
   });
 
 export const getLocal = (value, defaultValue = null) =>
@@ -57,5 +57,5 @@ export const getNameRegion = (regions, location) =>
 export const handleCalculateTotalMoney = (cart) =>
   cart.reduce(
     (previousValue, item) => previousValue + item.amount * item.price,
-    0,
+    0
   );

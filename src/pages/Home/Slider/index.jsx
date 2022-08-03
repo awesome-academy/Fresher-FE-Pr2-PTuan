@@ -22,15 +22,13 @@ const Slider = () => {
         autoplay={{ delay: 4000 }}
         pagination={{ clickable: true }}
       >
-        {srcImg.map((img, index) => {
-          return (
-            <SwiperSlide key={index}>
-              <a href="#!">
-                <img className="header-Slider w-100" src={img} alt="slider" />
-              </a>
-            </SwiperSlide>
-          );
-        })}
+        {srcImg.map((img, index) => (
+          <SwiperSlide key={index}>
+            <a href="#!">
+              <img className="header-Slider w-100" src={img} alt="slider" />
+            </a>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   );

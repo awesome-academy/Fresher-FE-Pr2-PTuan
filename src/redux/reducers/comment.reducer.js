@@ -1,4 +1,4 @@
-import { REQUEST, SUCCESS, FAIL, COMMENT_ACTION } from '../constants';
+import { REQUEST, SUCCESS, FAIL, COMMENT_ACTION } from "../constants";
 
 const initialState = {
   commentList: {

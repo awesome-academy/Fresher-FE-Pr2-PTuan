@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
-import { CheckCircleOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-import './style.scss';
-import { Row, Col, Card, Button } from 'antd';
+import { CheckCircleOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
+import "./style.scss";
+import { Row, Col, Card, Button } from "antd";
 
 function Complete() {
   const { userInfo } = useSelector((state) => state.userReducer);
@@ -22,7 +22,7 @@ function Complete() {
           <p>Một email xác nhận đã gửi tới {userInfo.email}</p>
           <p>Xin vui lòng kiểm tra email của bạn</p>
         </Col>
-        <Card style={{ width: '100%' }}>
+        <Card style={{ width: "100%" }}>
           <Row gutter={32}>
             <Col span={12}>
               <h2>Thông tin mua hàng</h2>

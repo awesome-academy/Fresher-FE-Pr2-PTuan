@@ -1,25 +1,25 @@
-import React from 'react';
-import { Table, Tag, Row, Col, Button, notification } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeUserInfo } from '../../../redux/actions';
+import React, { useEffect, useState } from "react";
+import { Table, Tag, Row, Col, Button, notification } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { changeUserInfo } from "../../../redux/actions";
 
 function UserManagement() {
   const { users } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
   const handleAccount = ({ id, type }) => {
-    if (type === 'block')
+    if (type === "block")
       dispatch(
         changeUserInfo({
           userID: id,
-          status: 'block',
-        }),
+          status: "block",
+        })
       );
-    if (type === 'unblock')
+    if (type === "unblock")
       dispatch(
         changeUserInfo({
           userID: id,
-          status: 'active',
-        }),
+          status: "active",
+        })
       );
     notification.success({
       message: `${type} thành công!`,
@@ -28,37 +28,37 @@ function UserManagement() {
 
   const columns = [
     {
-      title: 'STT',
-      dataIndex: 'key',
-      key: 'key',
+      title: "STT",
+      dataIndex: "key",
+      key: "key",
       render: (index) => <span>{index + 1}</span>,
     },
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
     },
     {
-      title: 'SurName',
-      dataIndex: 'surname',
-      key: 'surname',
+      title: "SurName",
+      dataIndex: "surname",
+      key: "surname",
     },
     {
-      title: 'Email',
-      dataIndex: 'email',
-      key: 'email',
-      align: 'center',
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+      align: "center",
     },
     {
-      title: 'Số điện thoại',
-      dataIndex: 'phone',
-      key: 'phone',
-      align: 'center',
+      title: "Số điện thoại",
+      dataIndex: "phone",
+      key: "phone",
+      align: "center",
     },
     {
-      title: 'Location',
-      dataIndex: 'location',
-      key: 'location',
+      title: "Location",
+      dataIndex: "location",
+      key: "location",
       render: (_, { location }) =>
         location ? (
           <Row>
@@ -72,23 +72,23 @@ function UserManagement() {
         ),
     },
     {
-      title: 'Status',
-      key: 'status',
-      dataIndex: 'status',
+      title: "Status",
+      key: "status",
+      dataIndex: "status",
       render: (_, { status }) => {
-        const color = status === 'active' ? 'success' : 'error';
+        const color = status === "active" ? "success" : "error";
         return <Tag color={color}>{status.toUpperCase()}</Tag>;
       },
     },
     {
-      title: 'Action',
-      key: 'action',
-      align: 'center',
+      title: "Action",
+      key: "action",
+      align: "center",
       render: (_, { id, status }) =>
-        status === 'block' ? (
+        status === "block" ? (
           <Button
             type="link"
-            onClick={() => handleAccount({ id, type: 'unblock' })}
+            onClick={() => handleAccount({ id, type: "unblock" })}
           >
             UnBlock
           </Button>
@@ -96,7 +96,7 @@ function UserManagement() {
           <Button
             type="link"
             danger
-            onClick={() => handleAccount({ id, type: 'block' })}
+            onClick={() => handleAccount({ id, type: "block" })}
           >
             Block
           </Button>

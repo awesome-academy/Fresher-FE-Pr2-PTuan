@@ -1,4 +1,4 @@
-@import '../../../style/style.scss';
+@import "../../../style/style.scss";
 
 .section-slider-product {
   .section-image {
@@ -6,7 +6,6 @@
       width: 100%;
     }
   }
-
   .product-content {
     margin-top: 3rem;
     position: relative;
@@ -27,7 +26,6 @@
           @include animation(hoverleft, 0.2s, ease-in, 1);
         }
       }
-
       &:hover {
         .swiper-button-next {
           display: block;
@@ -58,19 +56,18 @@
 
       .swiper-button-next {
         background-size: contain;
-        background-image: url('../../../assets/Icon/next_bst.svg');
+        background-image: url("../../../assets/Icon/next_bst.svg");
       }
 
       .swiper-button-prev {
         background-size: contain;
-        background-image: url('../../../assets/Icon/prev_bst.svg');
+        background-image: url("../../../assets/Icon/prev_bst.svg");
       }
 
       .swiper-slide {
         margin-right: 2rem !important;
       }
     }
-
     .swiper-slide {
       text-align: center;
       height: initial;

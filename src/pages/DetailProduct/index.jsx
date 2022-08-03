@@ -1,10 +1,11 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
+import { v4 as uuidv4 } from "uuid";
 
-import 'react-image-gallery/styles/css/image-gallery.css';
-import ImageGallery from 'react-image-gallery';
-import CommentAndRating from './CommentAndRating';
+import "react-image-gallery/styles/css/image-gallery.css";
+import ImageGallery from "react-image-gallery";
+import CommentAndRating from "./CommentAndRating";
 
 import {
   Radio,
@@ -18,20 +19,20 @@ import {
   InputNumber,
   Input,
   Card,
-} from 'antd';
+} from "antd";
 
-import { ShoppingCartOutlined } from '@ant-design/icons';
-import { Link, useParams } from 'react-router-dom';
-import { formatNumber, openNotificationWithIcon } from '../../helper';
+import { ShoppingCartOutlined } from "@ant-design/icons";
+import { Link, useParams } from "react-router-dom";
+import { formatNumber, openNotificationWithIcon } from "../../helper";
 
-import { getProductDetail } from '../../redux/actions/product.action';
-import { addToCart } from '../../redux/actions/cart.action';
-import './style.scss';
-import { getCommentList, sendComment } from '../../redux/actions';
+import { getProductDetail } from "../../redux/actions/product.action";
+import { addToCart } from "../../redux/actions/cart.action";
+import "./style.scss";
+import { getCommentList, sendComment } from "../../redux/actions";
 
 function DetailProduct() {
   const { productDetails, loading } = useSelector(
-    (state) => state.productReducer,
+    (state) => state.productReducer
   );
   const { userInfo } = useSelector((state) => state.userReducer);
   const { commentList } = useSelector((state) => state.commentReducer);
@@ -43,7 +44,7 @@ function DetailProduct() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    window.scroll({ left: 0, top: 0, behavior: 'smooth' });
+    window.scroll({ left: 0, top: 0, behavior: "smooth" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -53,10 +54,10 @@ function DetailProduct() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  const handleAddToCart = (values) => {
+  const submitForm = (values) => {
     openNotificationWithIcon({
-      type: 'success',
-      message: 'Thêm vào giỏ hàng thành công',
+      type: "success",
+      message: "Thêm vào giỏ hàng thành công",
       description: `Sản phẩm ${productDetails.name} đã được thêm vào giỏ hàng`,
     });
 
@@ -70,54 +71,43 @@ function DetailProduct() {
         amount: values.amount,
         size: productDetails.sizes[values.size],
         colorName: productDetails.colorsName[values.color],
-      }),
+      })
     );
   };
 
-  const renderColor = ({ images }) => {
-    return (
-      <Radio.Group
-        className="radio-custom option-view"
-        value={imageIndex}
-        onChange={(e) => setImageIndex(e.target.value)}
-      >
-        {Object.values(images).map((value, index) => {
-          return (
-            <Radio value={index} key={index} className="view-color">
-              <img alt="radio" src={value} />
-            </Radio>
-          );
-        })}
-      </Radio.Group>
-    );
-  };
+  const renderColor = ({ images }) => (
+    <Radio.Group
+      className="radio-custom option-view"
+      value={imageIndex}
+      onChange={(e) => setImageIndex(e.target.value)}
+    >
+      {Object.values(images).map((value, index) => (
+        <Radio value={index} key={index} className="view-color">
+          <img alt="radio" src={value} />
+        </Radio>
+      ))}
+    </Radio.Group>
+  );
 
-  const getListImages = ({ images }) => {
-    return Object.entries(images).map(([_, value]) => {
-      return {
-        original: value,
-        thumbnail: value,
-      };
-    });
-  };
+  const getListImages = ({ images }) =>
+    Object.entries(images).map(([_, value]) => ({
+      original: value,
+      thumbnail: value,
+    }));
 
-  const renderSizes = ({ sizes }) => {
-    return (
-      <Radio.Group
-        className="option-view"
-        value={size}
-        onChange={(e) => setSize(e.target.value)}
-      >
-        {sizes.map((item, index) => {
-          return (
-            <Radio key={index} value={index} checked={index === 0}>
-              {item}
-            </Radio>
-          );
-        })}
-      </Radio.Group>
-    );
-  };
+  const renderSizes = ({ sizes }) => (
+    <Radio.Group
+      className="option-view"
+      value={size}
+      onChange={(e) => setSize(e.target.value)}
+    >
+      {sizes.map((item, index) => (
+        <Radio key={index} value={index} checked={index === 0}>
+          {item}
+        </Radio>
+      ))}
+    </Radio.Group>
+  );
 
   const handleSendComentAndRating = (comment) => {
     if (userInfo.id) {
@@ -126,13 +116,13 @@ function DetailProduct() {
           comment,
           productID: parseInt(id),
           email: userInfo.email,
-        }),
+        })
       );
       formComment.resetFields();
     } else {
       openNotificationWithIcon({
-        type: 'error',
-        message: 'Bạn phải đăng nhập mới sử dụng được tính năng này',
+        type: "error",
+        message: "Bạn phải đăng nhập mới sử dụng được tính năng này",
       });
     }
   };
@@ -179,11 +169,11 @@ function DetailProduct() {
                 <span>&#x276A;30 Nhận xét&#x276B;</span>
               </Row>
               <h2 className="detail-price">
-                {formatNumber(productDetails.price)}
+                {productDetails.price && formatNumber(productDetails.price)}
               </h2>
               <p>{productDetails.description}</p>
               <Form
-                onFinish={handleAddToCart}
+                onFinish={submitForm}
                 name="form-size"
                 layout="vertical"
                 initialValues={{
@@ -198,11 +188,11 @@ function DetailProduct() {
                   rules={[
                     {
                       required: true,
-                      message: 'Vui lòng chọn màu!',
+                      message: "Vui lòng chọn màu!",
                     },
                   ]}
                 >
-                  {renderColor(productDetails)}
+                  {productDetails.images && renderColor(productDetails)}
                 </Form.Item>
                 <Form.Item
                   name="size"
@@ -210,11 +200,11 @@ function DetailProduct() {
                   rules={[
                     {
                       required: true,
-                      message: 'Vui lòng chọn size!',
+                      message: "Vui lòng chọn size!",
                     },
                   ]}
                 >
-                  {renderSizes(productDetails)}
+                  {productDetails.sizes && renderSizes(productDetails)}
                 </Form.Item>
                 <div className="quantity">
                   <Form.Item
@@ -223,12 +213,12 @@ function DetailProduct() {
                     rules={[
                       {
                         required: true,
-                        message: 'Vui lòng chọn số lượng!',
+                        message: "Vui lòng chọn số lượng!",
                       },
                     ]}
                   >
                     <InputNumber
-                      type={'number'}
+                      type={"number"}
                       className="quantity-input"
                       min={1}
                     />

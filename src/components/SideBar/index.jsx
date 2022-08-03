@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import IconUser from '../../assets/Avatar/account_ava.webp';
-import { Button } from 'antd';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import IconUser from "../../assets/Avatar/account_ava.webp";
+import { Button } from "antd";
 
-import './style.scss';
-import { logout } from '../../redux/actions';
+import "./style.scss";
+import { logoutAction } from "../../redux/actions";
 
 const SideBar = ({ list }) => {
   const location = useLocation();
@@ -14,8 +14,8 @@ const SideBar = ({ list }) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logout());
-    navigate('/');
+    dispatch(logoutAction());
+    navigate("/");
   };
 
   return (
@@ -25,7 +25,7 @@ const SideBar = ({ list }) => {
         {userInfo ? (
           <>
             <div className="account">
-              <p className="user">{userInfo.surname + ' ' + userInfo.name}</p>
+              <p className="user">{userInfo.surname + " " + userInfo.name}</p>
             </div>
             <Button className="goto-user" onClick={handleLogout}>
               Đăng xuất
@@ -50,26 +50,22 @@ const SideBar = ({ list }) => {
       </div>
 
       <ul>
-        {list.map((item, index) => {
-          return (
-            <li
-              className={item.link === location.pathname ? 'active' : ''}
-              key={index}
-            >
-              <Link to={item.link}>
-                <img
-                  src={
-                    item.link === location.pathname
-                      ? item.iconActive
-                      : item.icon
-                  }
-                  alt=""
-                />
-                <span>{item.title}</span>
-              </Link>
-            </li>
-          );
-        })}
+        {list.map((item, index) => (
+          <li
+            className={item.link === location.pathname ? "active" : ""}
+            key={index}
+          >
+            <Link to={item.link}>
+              <img
+                src={
+                  item.link === location.pathname ? item.iconActive : item.icon
+                }
+                alt=""
+              />
+              <span>{item.title}</span>
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );

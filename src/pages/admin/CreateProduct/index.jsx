@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-import { Button, Form, Input, Space } from 'antd';
+import { Button, Col, Row, Form, Input, Checkbox, Select, Space } from "antd";
 
-import { useDispatch, useSelector } from 'react-redux';
-import { API_PATH } from '../../../Service/constants';
+import { useDispatch, useSelector } from "react-redux";
+import { API_PATH } from "../../../Service/constants";
 
 import {
   colors,
@@ -13,10 +13,8 @@ import {
   renderOptionCategory,
   renderSizeCheckbox,
   sizes,
-} from '../ProductManagement';
-import { createProduct } from '../../../redux/actions/product.action';
-import FormItem from '../../../components/FormItem';
-import { COLORS, SIZES } from '../../../constant';
+} from "../ProductManagement";
+import { createProduct } from "../../../redux/actions/product.action";
 
 function CreateProduct() {
   const { products, pagination } = useSelector((state) => state.productReducer);
@@ -35,7 +33,7 @@ function CreateProduct() {
 
   const submitForm = (values) => {
     dispatch(createProduct(values));
-    navigate('/admin/product-management');
+    navigate("/admin/product-management");
   };
 
   return (
@@ -50,30 +48,92 @@ function CreateProduct() {
         layout="vertical"
         autoComplete="off"
       >
-        <FormItem label="Tên sản phẩm" name="name">
+        <Form.Item
+          label="Tên sản phẩm"
+          name="name"
+          rules={[
+            {
+              required: true,
+              message: "Please input your username!",
+            },
+          ]}
+        >
           <Input />
-        </FormItem>
-
-        <FormItem label="Mô tả" name="description">
+        </Form.Item>
+        <Form.Item
+          label="Hình ảnh"
+          name="image"
+          rules={[
+            {
+              required: true,
+              message: "Requied!",
+            },
+          ]}
+        >
           <Input />
-        </FormItem>
-
-        <FormItem label="Category" name="category">
+        </Form.Item>
+        <Form.Item
+          label="Mô tả"
+          name="description"
+          rules={[
+            {
+              required: true,
+              message: "Requied!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Category"
+          name="category"
+          rules={[
+            {
+              required: true,
+              message: "Please input your category!",
+            },
+          ]}
+        >
           {renderOptionCategory(styles)}
-        </FormItem>
-
-        <FormItem label="Giá bán" name="price">
+        </Form.Item>
+        <Form.Item
+          label="Giá bán"
+          name="price"
+          rules={[
+            {
+              required: true,
+              message: "Requied!",
+            },
+          ]}
+        >
           <Input />
-        </FormItem>
+        </Form.Item>
 
-        <FormItem label="Color" name="colorsName">
-          {renderColorCheckbox(COLORS)}
-        </FormItem>
+        <Form.Item
+          label="Color"
+          name="colorsName"
+          rules={[
+            {
+              required: true,
+              message: "Please select color!",
+            },
+          ]}
+        >
+          {renderColorCheckbox(colors)}
+        </Form.Item>
 
-        <FormItem name="sizes" label="Size">
-          {renderSizeCheckbox(SIZES)}
-        </FormItem>
-
+        <Form.Item
+          name="sizes"
+          label="Size"
+          rules={[
+            {
+              required: true,
+              message: "Please select size!",
+            },
+          ]}
+        >
+          {renderSizeCheckbox(sizes)}
+        </Form.Item>
         <Space size="large">
           <Link to="/admin/product-management">
             <Button>Quay lại</Button>

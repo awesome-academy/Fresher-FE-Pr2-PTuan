@@ -1,9 +1,9 @@
-import { put, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery } from "redux-saga/effects";
 
-import { openNotificationWithIcon } from '../../helper';
+import { openNotificationWithIcon } from "../../helper";
 
-import { FAIL, REQUEST, SUCCESS, USER_ACTION } from '../constants';
-import { authAPI } from '../../Service';
+import { FAIL, REQUEST, SUCCESS, USER_ACTION } from "../constants";
+import { authAPI } from "../../Service";
 
 function* Login(action) {
   try {
@@ -14,14 +14,14 @@ function* Login(action) {
       payload: response,
     });
     yield openNotificationWithIcon({
-      type: 'success',
-      message: 'Đăng nhập thành công!',
+      type: "success",
+      message: "Đăng nhập thành công!",
     });
 
-    if (response?.data?.user?.role === 'admin') {
-      callback('/admin/product-management');
+    if (response?.data?.user?.role === "admin") {
+      callback("/admin/product-management");
     } else {
-      callback('/');
+      callback("/");
     }
   } catch (e) {
     yield put({
@@ -29,9 +29,9 @@ function* Login(action) {
       payload: e.message,
     });
     yield openNotificationWithIcon({
-      type: 'error',
-      message: 'Login fail!',
-      description: 'Incorrect account or password!',
+      type: "error",
+      message: "Login fail!",
+      description: "Incorrect account or password!",
     });
   }
 }
@@ -39,7 +39,7 @@ function* Login(action) {
 function* Register(action) {
   try {
     const { data, callback } = action.payload;
-    data.status = 'active';
+    data.status = "active";
 
     const response = yield authAPI.register(data);
     yield put({
@@ -47,8 +47,8 @@ function* Register(action) {
       payload: response,
     });
     yield openNotificationWithIcon({
-      type: 'success',
-      message: 'Đăng ký tài khoản thành công!',
+      type: "success",
+      message: "Đăng ký tài khoản thành công!",
     });
     callback();
   } catch (e) {
@@ -58,9 +58,9 @@ function* Register(action) {
       payload: e.message,
     });
     yield openNotificationWithIcon({
-      type: 'error',
-      message: 'Đăng ký thất bại',
-      description: 'Email đã được sử dụng, vui lòng chọn 1 email khác!',
+      type: "error",
+      message: "Đăng ký thất bại",
+      description: "Email đã được sử dụng, vui lòng chọn 1 email khác!",
     });
   }
 }
@@ -91,16 +91,16 @@ function* changePassword(action) {
     if (data?.accessToken) {
       yield authAPI.changePassword(userId, { password: newPassword });
       yield openNotificationWithIcon({
-        type: 'success',
-        message: 'Thay đổi mật khẩu thành công',
+        type: "success",
+        message: "Thay đổi mật khẩu thành công",
       });
     }
 
     callback();
   } catch (errors) {
     yield openNotificationWithIcon({
-      type: 'error',
-      message: 'Mật khẩu cũ không chính xác',
+      type: "error",
+      message: "Mật khẩu cũ không chính xác",
     });
   }
 }

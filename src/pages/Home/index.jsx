@@ -1,18 +1,26 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Spin } from "antd";
 
-import Slider from './Slider';
-import Service from './Service';
-import SectionProduct from './SectionProduct';
-import SectionBanner from './SectionBanner';
-import Content from './Content';
-import SectionBlog from './SectionBlog';
+import Slider from "./Slider";
+import Service from "./Service";
+import SectionProduct from "./SectionProduct";
+import SectionBanner from "./SectionBanner";
+import Content from "./Content";
+import SectionBlog from "./SectionBlog";
 
-import './style.scss';
-import { Spin } from 'antd';
+import "./style.scss";
+import { filterProduct } from "../../redux/actions";
 
 function Home() {
   const { loading } = useSelector((state) => state.productReducer);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(filterProduct({ _page: 1, _limit: 12 }));
+  }, []);
+  
   return (
     <div className="container">
       {loading ? (

@@ -1,6 +1,6 @@
-import { Col, Row } from 'antd';
-import React from 'react';
-import './style.scss';
+import { Col, Row } from "antd";
+import React from "react";
+import "./style.scss";
 
 const NavMenuDrop = ({ list, imgRight }) => (
   <div className="nav-menu-drop">

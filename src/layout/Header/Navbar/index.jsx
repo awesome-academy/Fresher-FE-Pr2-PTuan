@@ -1,226 +1,226 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Button, Badge, Row, Col, Form, Input } from 'antd';
-import { LogoutOutlined } from '@ant-design/icons';
-import { Link, useNavigate } from 'react-router-dom';
-import { logout } from '../../../redux/actions/user.action';
-import { filterProduct } from '../../../redux/actions/product.action';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Badge, Row, Col, Form, Input } from "antd";
+import { LogoutOutlined } from "@ant-design/icons";
+import { Link, useNavigate } from "react-router-dom";
+import { logoutAction } from "../../../redux/actions/user.action";
+import { filterProduct } from "../../../redux/actions/product.action";
 
-import './style.scss';
-import NavMenuDrop from '../NavMenuDrop';
-import user from '../../../assets/Icon/user.svg';
-import cartImg from '../../../assets/Icon/cart.svg';
-import heart from '../../../assets/Icon/heart.svg';
-import Logo from '../../../assets/logo.webp';
-import { formatNumber } from '../../../helper';
+import "./style.scss";
+import NavMenuDrop from "../NavMenuDrop";
+import user from "../../../assets/Icon/user.svg";
+import cartImg from "../../../assets/Icon/cart.svg";
+import heart from "../../../assets/Icon/heart.svg";
+import Logo from "../../../assets/logo.webp";
+import { formatNumber } from "../../../helper";
 
 const list = [
   {
-    name: 'xuân hè 2022',
-    link: '/xuan-he',
+    name: "xuân hè 2022",
+    link: "/xuan-he",
   },
   {
-    name: 'nữ',
-    link: '/nu',
-    key_mobile: '1',
+    name: "nữ",
+    link: "/nu",
+    key_mobile: "1",
     list: [
       {
-        title: 'ÁO',
+        title: "ÁO",
         items: [
-          { title: 'Áo Polo Nữ' },
-          { title: 'Áo Sơ Mi Nữ' },
-          { title: 'Áo Thun Nữ' },
-          { title: 'Áo Khoác Nữ' },
+          { title: "Áo Polo Nữ" },
+          { title: "Áo Sơ Mi Nữ" },
+          { title: "Áo Thun Nữ" },
+          { title: "Áo Khoác Nữ" },
         ],
       },
       {
-        title: 'QUẦN',
+        title: "QUẦN",
         items: [
-          { title: 'Quần Jean Nữ ' },
-          { title: 'Quần âu nữ' },
-          { title: 'quần kaki nữ' },
-          { title: 'quần short Nữ' },
+          { title: "Quần Jean Nữ " },
+          { title: "Quần âu nữ" },
+          { title: "quần kaki nữ" },
+          { title: "quần short Nữ" },
         ],
       },
       {
-        title: 'VÁY NỮ',
+        title: "VÁY NỮ",
         items: [
-          { title: 'Áo Polo Nữ' },
-          { title: 'Áo Sơ Mi Nữ' },
-          { title: 'Áo Thun Nữ' },
-          { title: 'Áo Khoác Nữ' },
+          { title: "Áo Polo Nữ" },
+          { title: "Áo Sơ Mi Nữ" },
+          { title: "Áo Thun Nữ" },
+          { title: "Áo Khoác Nữ" },
         ],
       },
       {
-        title: 'BỘ ĐỒ NỮ',
+        title: "BỘ ĐỒ NỮ",
         items: [
-          { title: 'Áo Polo Nữ' },
-          { title: 'Áo Sơ Mi Nữ' },
-          { title: 'Áo Thun Nữ' },
-          { title: 'Áo Khoác Nữ' },
+          { title: "Áo Polo Nữ" },
+          { title: "Áo Sơ Mi Nữ" },
+          { title: "Áo Thun Nữ" },
+          { title: "Áo Khoác Nữ" },
         ],
       },
       {
-        title: 'YODY SPORT',
+        title: "YODY SPORT",
         items: [{}],
       },
       {
-        title: 'PHỤ KIỆN',
+        title: "PHỤ KIỆN",
         items: [
-          { title: 'Áo Polo Nữ' },
-          { title: 'Áo Sơ Mi Nữ' },
-          { title: 'Áo Thun Nữ' },
-          { title: 'Áo Khoác Nữ' },
+          { title: "Áo Polo Nữ" },
+          { title: "Áo Sơ Mi Nữ" },
+          { title: "Áo Thun Nữ" },
+          { title: "Áo Khoác Nữ" },
         ],
       },
       {
-        title: 'ĐỒ MẶC TRONG',
+        title: "ĐỒ MẶC TRONG",
         items: [
-          { title: 'Áo Polo Nữ' },
-          { title: 'Áo Sơ Mi Nữ' },
-          { title: 'Áo Thun Nữ' },
-          { title: 'Áo Khoác Nữ' },
+          { title: "Áo Polo Nữ" },
+          { title: "Áo Sơ Mi Nữ" },
+          { title: "Áo Thun Nữ" },
+          { title: "Áo Khoác Nữ" },
         ],
       },
     ],
     imgRight:
-      'https://bizweb.sapocdn.net/thumb/grande/100/438/408/themes/863105/assets/link_image_2_1.jpg?1655524220621',
+      "https://bizweb.sapocdn.net/thumb/grande/100/438/408/themes/863105/assets/link_image_2_1.jpg?1655524220621",
   },
   {
-    name: 'nam',
-    link: '/nam',
-    key_mobile: '2',
+    name: "nam",
+    link: "/nam",
+    key_mobile: "2",
     list: [
       {
-        title: 'ÁO',
+        title: "ÁO",
         items: [
-          { title: 'Áo Thun' },
-          { title: 'Áo Polo Nam' },
-          { title: 'Áo Sơ Mi Nam' },
-          { title: 'Áo Ba Lỗ' },
-          { title: 'Áo Khoác Nam' },
-          { title: 'Áo Vest Nam' },
+          { title: "Áo Thun" },
+          { title: "Áo Polo Nam" },
+          { title: "Áo Sơ Mi Nam" },
+          { title: "Áo Ba Lỗ" },
+          { title: "Áo Khoác Nam" },
+          { title: "Áo Vest Nam" },
         ],
       },
       {
-        title: 'QUẦN',
+        title: "QUẦN",
         items: [
-          { title: 'Quần Jean Nam' },
-          { title: 'Quần Tây Nam' },
-          { title: 'Quần Kaki Nam' },
-          { title: 'Quần Short' },
+          { title: "Quần Jean Nam" },
+          { title: "Quần Tây Nam" },
+          { title: "Quần Kaki Nam" },
+          { title: "Quần Short" },
         ],
       },
       {
-        title: 'Đồ mặc trong',
-        items: [{ title: 'Đồ Lót' }],
+        title: "Đồ mặc trong",
+        items: [{ title: "Đồ Lót" }],
       },
       {
-        title: 'YODY SPORT',
+        title: "YODY SPORT",
         items: [{}],
       },
       {
-        title: 'PHỤ KIỆN',
+        title: "PHỤ KIỆN",
         items: [
-          { title: 'Ví nam' },
-          { title: 'Thắt lưng nam' },
-          { title: 'Giày nam' },
-          { title: 'Mũ Nam' },
-          { title: 'Phụ Kiện Khác' },
+          { title: "Ví nam" },
+          { title: "Thắt lưng nam" },
+          { title: "Giày nam" },
+          { title: "Mũ Nam" },
+          { title: "Phụ Kiện Khác" },
         ],
       },
     ],
     imgRight:
-      'https://bizweb.sapocdn.net/thumb/grande/100/438/408/themes/863105/assets/link_image_3_1.jpg?1655524220621',
+      "https://bizweb.sapocdn.net/thumb/grande/100/438/408/themes/863105/assets/link_image_3_1.jpg?1655524220621",
   },
   {
-    name: 'trẻ em',
-    link: '/tre-em',
-    key_mobile: '3',
+    name: "trẻ em",
+    link: "/tre-em",
+    key_mobile: "3",
     list: [
       {
-        title: 'ÁO',
+        title: "ÁO",
         items: [
-          { title: 'Áo Thun' },
-          { title: 'Áo polo' },
-          { title: 'Áo khoác' },
-          { title: 'Áo sơ mi' },
+          { title: "Áo Thun" },
+          { title: "Áo polo" },
+          { title: "Áo khoác" },
+          { title: "Áo sơ mi" },
         ],
       },
       {
-        title: 'QUẦN',
-        items: [{ title: 'Quần dài' }, { title: 'Quần short' }],
+        title: "QUẦN",
+        items: [{ title: "Quần dài" }, { title: "Quần short" }],
       },
       {
-        title: 'BỘ ĐỒ TRẺ EM',
+        title: "BỘ ĐỒ TRẺ EM",
         items: [{}],
       },
       {
-        title: 'VÁY ĐẦM TRẺ EM',
-        items: [{ title: 'Chân Váy' }, { title: 'Váy trẻ em' }],
+        title: "VÁY ĐẦM TRẺ EM",
+        items: [{ title: "Chân Váy" }, { title: "Váy trẻ em" }],
       },
       {
-        title: 'PHỤ KIỆN',
-        items: [{ title: 'Phụ kiện khác' }],
+        title: "PHỤ KIỆN",
+        items: [{ title: "Phụ kiện khác" }],
       },
     ],
     imgRight:
-      'https://bizweb.sapocdn.net/thumb/grande/100/438/408/themes/863105/assets/link_image_4_1.jpg?1655524220621',
+      "https://bizweb.sapocdn.net/thumb/grande/100/438/408/themes/863105/assets/link_image_4_1.jpg?1655524220621",
   },
   {
-    name: 'polo yody',
-    link: '#',
+    name: "polo yody",
+    link: "#",
   },
   {
-    name: 'bộ sưu tập',
-    link: '#',
+    name: "bộ sưu tập",
+    link: "#",
   },
   {
-    name: 'yody love',
-    link: '#',
+    name: "yody love",
+    link: "#",
     list: [
       {
-        title: 'TIN TỨC',
+        title: "TIN TỨC",
         items: [
-          { title: 'Yody news' },
-          { title: 'Trải nghiệm khách hàng' },
-          { title: 'Showroom Yody' },
-          { title: 'Văn hóa Yody' },
-          { title: 'Bạn đọc quan tâm' },
+          { title: "Yody news" },
+          { title: "Trải nghiệm khách hàng" },
+          { title: "Showroom Yody" },
+          { title: "Văn hóa Yody" },
+          { title: "Bạn đọc quan tâm" },
         ],
       },
       {
-        title: 'PHONG CÁCH THỜI TRANG',
+        title: "PHONG CÁCH THỜI TRANG",
         items: [
-          { title: 'Mix and match ' },
-          { title: 'Mẹo hay' },
-          { title: 'Xu hướng thời trang' },
-          { title: 'Phong thủy' },
+          { title: "Mix and match " },
+          { title: "Mẹo hay" },
+          { title: "Xu hướng thời trang" },
+          { title: "Phong thủy" },
         ],
       },
       {
-        title: 'STORIES',
-        items: [{ title: 'Nhân vật' }, { title: 'Theo dòng thời trang' }],
+        title: "STORIES",
+        items: [{ title: "Nhân vật" }, { title: "Theo dòng thời trang" }],
       },
       {
-        title: 'CHẤT LIỆU VÀ SẢN PHẨM',
-        items: [{ title: 'Chất liệu' }, { title: 'Sản phẩm' }],
+        title: "CHẤT LIỆU VÀ SẢN PHẨM",
+        items: [{ title: "Chất liệu" }, { title: "Sản phẩm" }],
       },
       {
-        title: 'ƯU ĐÃI',
+        title: "ƯU ĐÃI",
         items: [
-          { title: 'Khuyến mãi' },
-          { title: 'Dịch vụ' },
-          { title: 'Chính sách' },
+          { title: "Khuyến mãi" },
+          { title: "Dịch vụ" },
+          { title: "Chính sách" },
         ],
       },
     ],
     imgRight:
-      'https://bizweb.sapocdn.net/thumb/grande/100/438/408/themes/863105/assets/link_image_7_1.jpg?1655524220621',
+      "https://bizweb.sapocdn.net/thumb/grande/100/438/408/themes/863105/assets/link_image_7_1.jpg?1655524220621",
   },
   {
-    name: 'đồng phục',
-    link: '#',
+    name: "đồng phục",
+    link: "#",
   },
 ];
 
@@ -231,27 +231,30 @@ const Navbar = () => {
   const { cart } = useSelector((state) => state.cartReducer);
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logoutAction());
   };
-  const renderCart = () =>
-    cart.map((item, index) => (
-      <Row gutter={[32, 32]} key={index} className="border-bottom">
-        <Col span={4}>{index + 1}</Col>
-        <Col span={4} className="product-img">
-          <img src={item.image} alt="product" />
-        </Col>
-        <Col span={4}>{item.name}</Col>
-        <Col span={4}>{item.amount}</Col>
-        <Col span={4}>{formatNumber(item.price)}</Col>
-        <Col span={4}>{formatNumber(item.price * item.amount)}</Col>
-      </Row>
-    ));
+  const renderCart = () => {
+    return cart.map((item, index) => {
+      return (
+        <Row gutter={[32, 32]} key={index} className="border-bottom">
+          <Col span={4}>{index + 1}</Col>
+          <Col span={4} className="product-img">
+            <img src={item.image} alt="product" />
+          </Col>
+          <Col span={4}>{item.name}</Col>
+          <Col span={4}>{item.amount}</Col>
+          <Col span={4}>{formatNumber(item.price)}</Col>
+          <Col span={4}>{formatNumber(item.price * item.amount)}</Col>
+        </Row>
+      );
+    });
+  };
 
   const handleFilter = (value) => {
+    console.log(value);
     dispatch(filterProduct(value));
     navigate(`/filter`);
   };
-
   return (
     <div className="navbar">
       <div className="container wrapper-container">
@@ -412,7 +415,7 @@ const Navbar = () => {
                       </ul>
                     </div>
                   );
-                } else return '';
+                } else return "";
               })}
             </div>
           </div>

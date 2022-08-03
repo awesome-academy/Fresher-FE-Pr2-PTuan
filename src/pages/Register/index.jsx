@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { Form, Input, Button, Radio, Row, Col } from 'antd';
-import { useDispatch } from 'react-redux';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { LockOutlined } from '@ant-design/icons';
+import React, { useState } from "react";
+import { Form, Input, Button, Radio, Row, Col } from "antd";
+import { useDispatch } from "react-redux";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { LockOutlined } from "@ant-design/icons";
 
-import { register } from '../../redux/actions';
+import { registerAction } from "../../redux/actions";
 
-import '../Login/style.scss';
-import './style.scss';
-import { EMAIL_REGEX_VALIDATION, PHONE_REGEX_VALIDATION } from '../../constant';
+import "../Login/style.scss";
+import "./style.scss";
+import { EMAIL_REGEX_VALIDATION, PHONE_REGEX_VALIDATION } from "../../constant";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -16,11 +16,11 @@ const Register = () => {
   const handleRegister = (values) => {
     const { confirm, ...rest } = values;
     dispatch(
-      register({
+      registerAction({
         data: rest,
-        status: 'active',
-        callback: () => navigate('/login'),
-      }),
+        status: "active",
+        callback: () => navigate("/login"),
+      })
     );
   };
 
@@ -49,15 +49,15 @@ const Register = () => {
                     rules={[
                       {
                         min: 2,
-                        message: 'Tên quá ngắn',
+                        message: "Tên quá ngắn",
                       },
                       {
                         max: 20,
-                        message: 'Tên quá dài',
+                        message: "Tên quá dài",
                       },
                       {
                         required: true,
-                        message: 'Vui lòng nhập trường này!',
+                        message: "Vui lòng nhập trường này!",
                       },
                     ]}
                   >
@@ -70,15 +70,15 @@ const Register = () => {
                     rules={[
                       {
                         min: 2,
-                        message: 'Quá ngắn',
+                        message: "Quá ngắn",
                       },
                       {
                         max: 20,
-                        message: 'Họ quá dài',
+                        message: "Họ quá dài",
                       },
                       {
                         required: true,
-                        message: 'Vui lòng nhập trường này!',
+                        message: "Vui lòng nhập trường này!",
                       },
                     ]}
                   >
@@ -91,11 +91,11 @@ const Register = () => {
                     rules={[
                       {
                         required: true,
-                        message: 'Vui lòng nhập Số Điện Thoại!',
+                        message: "Vui lòng nhập Số Điện Thoại!",
                       },
                       {
                         pattern: new RegExp(PHONE_REGEX_VALIDATION),
-                        message: 'Số điện thoại không hợp lệ',
+                        message: "Số điện thoại không hợp lệ",
                       },
                     ]}
                   >
@@ -108,11 +108,11 @@ const Register = () => {
                     rules={[
                       {
                         pattern: new RegExp(EMAIL_REGEX_VALIDATION),
-                        message: 'Email không đúng',
+                        message: "Email không đúng",
                       },
                       {
                         required: true,
-                        message: 'Enter you email',
+                        message: "Enter you email",
                       },
                     ]}
                     hasFeedback
@@ -126,11 +126,11 @@ const Register = () => {
                     rules={[
                       {
                         required: true,
-                        message: 'Vui lòng nhập Password!',
+                        message: "Vui lòng nhập Password!",
                       },
                       {
                         min: 6,
-                        message: 'Mật khẩu phải có độ dài từ 6 ký tự trở lên',
+                        message: "Mật khẩu phải có độ dài từ 6 ký tự trở lên",
                       },
                     ]}
                     hasFeedback
@@ -144,22 +144,22 @@ const Register = () => {
                 <Col span={24}>
                   <Form.Item
                     name="confirm"
-                    dependencies={['password']}
+                    dependencies={["password"]}
                     hasFeedback
                     rules={[
                       {
                         required: true,
-                        message: 'Xác nhận mật khẩu!',
+                        message: "Xác nhận mật khẩu!",
                       },
                       ({ getFieldValue }) => ({
                         validator(_, value) {
-                          if (!value || getFieldValue('password') === value) {
+                          if (!value || getFieldValue("password") === value) {
                             return Promise.resolve();
                           }
                           return Promise.reject(
                             new Error(
-                              'The two passwords that you entered do not match!',
-                            ),
+                              "The two passwords that you entered do not match!"
+                            )
                           );
                         },
                       }),

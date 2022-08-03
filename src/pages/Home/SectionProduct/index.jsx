@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import './style.scss';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { Navigation } from 'swiper';
-import { Link } from 'react-router-dom';
-import Product from '../../../components/Product';
-import { useSelector } from 'react-redux';
+import React from "react";
+import "./style.scss";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation } from "swiper";
+import { Link } from "react-router-dom";
+import Product from "../../../components/Product";
+import { useSelector } from "react-redux";
 
 const SectionProduct = () => {
-  const [showProducts, setShowProducts] = useState(14);
-
   const { products } = useSelector((state) => state.productReducer);
 
   return (
@@ -57,13 +55,11 @@ const SectionProduct = () => {
             modules={[Navigation]}
             className="mySwiper"
           >
-            {products.slice(0, showProducts).map((product) => {
-              return (
-                <SwiperSlide key={product.id}>
-                  <Product item={product} showOption={true} />
-                </SwiperSlide>
-              );
-            })}
+            {products.map((product) => (
+              <SwiperSlide key={product.id}>
+                <Product item={product} showOption={true} />
+              </SwiperSlide>
+            ))}
             <SwiperSlide className="swiper-slide">
               <Link className="swiper-end" to="/bts-xuan-he">
                 Xem tất cả

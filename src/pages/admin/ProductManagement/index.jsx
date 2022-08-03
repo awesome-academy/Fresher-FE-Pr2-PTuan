@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import {
   Table,
@@ -13,16 +12,81 @@ import {
   Input,
   Checkbox,
   Select,
-} from 'antd';
-import { formatNumber } from '../../../helper';
+} from "antd";
+import { formatNumber } from "../../../helper";
 
-import {
-  deleteProduct,
-  getAllProduct,
-} from '../../../redux/actions/product.action';
-import { API_PATH } from '../../../Service/constants';
-import FormItem from '../../../components/FormItem';
-import { COLORS, SIZES } from '../../../constant';
+import { useDispatch, useSelector } from "react-redux";
+import { deleteProduct, getAll } from "../../../redux/actions/product.action";
+import { API_PATH } from "../../../Service/constants";
+
+export const colors = [
+  {
+    color: "Xanh navy",
+    colorCode: "#03204C",
+  },
+  {
+    color: "Đen",
+    colorCode: "#000000",
+  },
+  {
+    color: "Xanh lá",
+    colorCode: "#62BF5E",
+  },
+  {
+    color: "Nâu",
+    colorCode: "#613B0D",
+  },
+  {
+    color: "Mint",
+    colorCode: "#8CD6C4",
+  },
+  {
+    color: "Xám",
+    colorCode: "#C1C5C0",
+  },
+  {
+    color: "Đỏ ",
+    colorCode: "#F10008",
+  },
+  {
+    color: "Xanh",
+    colorCode: "#6BBBDD",
+  },
+  {
+    color: "Tím than",
+    colorCode: "#321B3B",
+  },
+  {
+    color: "Vàng",
+    colorCode: "#EFE159",
+  },
+  {
+    color: "Trắng",
+    colorCode: "#FFFFFF",
+  },
+  {
+    color: "Hồng",
+    colorCode: "#DC85AC",
+  },
+  {
+    color: "Be",
+    colorCode: "#E3CCB5",
+  },
+  {
+    color: "Cam",
+    colorCode: "#F19F00",
+  },
+  {
+    color: "Tím ",
+    colorCode: "#C48FE2",
+  },
+  {
+    color: "Xanh cổ vịt",
+    colorCode: "#00867D",
+  },
+];
+
+export const sizes = ["XS", "S", "M", "L", "XL", "2XL", "3XL", "4XL"];
 
 export const renderColorCheckbox = (items) => (
   <Checkbox.Group>
@@ -32,7 +96,7 @@ export const renderColorCheckbox = (items) => (
           <Checkbox value={item.colorCode}>
             <i
               style={{
-                display: 'inline-block',
+                display: "inline-block",
                 width: 10,
                 height: 10,
                 marginRight: 5,
@@ -84,7 +148,7 @@ function ProductManagement() {
 
   useEffect(() => {
     axios.get(`${API_PATH}/styles`).then(({ data }) => setStyles(data));
-    dispatch(getAllProduct());
+    dispatch(getAll());
   }, []);
 
   const dataSource = () =>
@@ -92,13 +156,12 @@ function ProductManagement() {
       key: index,
       ...item,
     }));
-
   const columns = [
     {
-      title: 'Ảnh',
-      dataIndex: 'image',
-      key: 'image',
-      align: 'center',
+      title: "Ảnh",
+      dataIndex: "image",
+      key: "image",
+      align: "center",
       render: (_, { image }) => (
         <div className="product-img">
           <img src={image} alt="product" />
@@ -106,36 +169,36 @@ function ProductManagement() {
       ),
     },
     {
-      title: 'Sản phẩm',
-      dataIndex: 'name',
-      key: 'name',
-      align: 'center',
+      title: "Sản phẩm",
+      dataIndex: "name",
+      key: "name",
+      align: "center",
     },
     {
-      title: 'Mô tả',
-      dataIndex: 'color',
-      key: 'color',
-      align: 'center',
+      title: "Mô tả",
+      dataIndex: "color",
+      key: "color",
+      align: "center",
       render: (_, { colorsName, sizes }) => (
         <>
-          <div>Màu: {colorsName.join('-')}</div>
-          <div>Size: {sizes.join('-')}</div>
+          <div>Màu: {colorsName.join("-")}</div>
+          <div>Size: {sizes.join("-")}</div>
         </>
       ),
     },
     {
-      title: 'Giá bán',
-      dataIndex: 'price',
-      key: 'price',
-      align: 'center',
+      title: "Giá bán",
+      dataIndex: "price",
+      key: "price",
+      align: "center",
       render: (_, { price }) => (
         <span className="price-product">{formatNumber(price)}</span>
       ),
     },
     {
-      align: 'center',
-      title: 'Action',
-      key: 'action',
+      align: "center",
+      title: "Action",
+      key: "action",
       render: (_, { id }) => (
         <>
           <Button type="link" onClick={() => setIsModalVisible(true)}>
@@ -144,7 +207,7 @@ function ProductManagement() {
           <Button danger type="link" onClick={() => handleDeleteProduct(id)}>
             <i
               className="fa-solid fa-trash-can"
-              style={{ marginRight: '5px' }}
+              style={{ marginRight: "5px" }}
             ></i>
             Xoá
           </Button>
@@ -154,17 +217,17 @@ function ProductManagement() {
   ];
 
   const onChange = (list, type) => {
-    if (type === 'color') setCheckedList(...checkedList.size, list);
-    if (type === 'size') setCheckedList(...checkedList.color, list);
+    if (type === "color") setCheckedList(...checkedList.size, list);
+    if (type === "size") setCheckedList(...checkedList.color, list);
   };
 
   const handleDeleteProduct = (id) => {
     const indexProductDelete = products.findIndex((item) => item.id === id);
     Modal.confirm({
-      title: 'Xoá sản phẩm!',
+      title: "Xoá sản phẩm!",
       content: `Xoá vĩnh viễn sản phẩm ${products[indexProductDelete].name}. Thao tác này sẽ không khôi phục lại được!`,
       okButtonProps: { danger: true },
-      okText: 'Xoá vĩnh viễn',
+      okText: "Xoá vĩnh viễn",
       onOk() {
         dispatch(deleteProduct(id));
       },
@@ -182,7 +245,7 @@ function ProductManagement() {
             <Col>
               <Button
                 type="primary"
-                onClick={() => navigate('/admin/product-management/create')}
+                onClick={() => navigate("/admin/product-management/create")}
               >
                 Thêm sản phẩm mới
               </Button>
@@ -190,7 +253,7 @@ function ProductManagement() {
           </Row>
         )}
         pagination={{
-          position: ['bottomRight'],
+          position: ["bottomRight"],
           pageSize: 4,
           onClick: (value) => console.log(value),
         }}
@@ -217,33 +280,83 @@ function ProductManagement() {
           layout="vertical"
           autoComplete="off"
         >
-          <FormItem label="Tên sản phẩm" name="name">
+          <Form.Item
+            label="Tên sản phẩm"
+            name="name"
+            rules={[
+              {
+                required: true,
+                message: "Please input your username!",
+              },
+            ]}
+          >
             <Input />
-          </FormItem>
-
-          <FormItem label="Hình ảnh" name="image">
+          </Form.Item>
+          <Form.Item
+            label="Hình ảnh"
+            name="image"
+            rules={[
+              {
+                required: true,
+                message: "Requied!",
+              },
+            ]}
+          >
             <Input />
-          </FormItem>
-
-          <FormItem label="Mô tả" name="description">
+          </Form.Item>
+          <Form.Item
+            label="Mô tả"
+            name="description"
+            rules={[
+              {
+                required: true,
+                message: "Requied!",
+              },
+            ]}
+          >
             <Input />
-          </FormItem>
-
-          <FormItem label="Category" name="category">
-            {renderOptionCategory(styles)}
-          </FormItem>
-
-          <FormItem label="Giá bán" name="price">
+          </Form.Item>
+          <Form.Item label="Category" name="category">
+            {styles.length > 0 && renderOptionCategory(styles)}
+          </Form.Item>
+          <Form.Item
+            label="Giá bán"
+            name="price"
+            rules={[
+              {
+                required: true,
+                message: "Requied!",
+              },
+            ]}
+          >
             <Input />
-          </FormItem>
+          </Form.Item>
 
-          <FormItem label="Color" name="colors">
-            {renderColorCheckbox(COLORS)}
-          </FormItem>
+          <Form.Item
+            label="Color"
+            name="colors"
+            rules={[
+              {
+                required: true,
+                message: "Please select color!",
+              },
+            ]}
+          >
+            {renderColorCheckbox(colors)}
+          </Form.Item>
 
-          <FormItem name="sizes" label="Size">
-            {renderSizeCheckbox(SIZES)}
-          </FormItem>
+          <Form.Item
+            name="sizes"
+            label="Size"
+            rules={[
+              {
+                required: true,
+                message: "Please select size!",
+              },
+            ]}
+          >
+            {renderSizeCheckbox(sizes)}
+          </Form.Item>
         </Form>
       </Modal>
     </>

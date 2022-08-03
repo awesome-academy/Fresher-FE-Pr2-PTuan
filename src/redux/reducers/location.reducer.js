@@ -1,4 +1,4 @@
-import { REQUEST, SUCCESS, FAIL, LOCATION_ACTION } from '../constants';
+import { REQUEST, SUCCESS, FAIL, LOCATION_ACTION } from "../constants";
 
 const initialState = {
   cityList: {

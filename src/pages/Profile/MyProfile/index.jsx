@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
-import { Row, Col, Button, Form, Input, Space, notification } from 'antd';
+import React, { useState } from "react";
+import {
+  Row,
+  Col,
+  Button,
+  Modal,
+  Form,
+  Input,
+  Space,
+  notification,
+} from "antd";
 
-import '../style.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { changeUserInfo } from '../../../redux/actions';
-import { PHONE_REGEX_VALIDATION } from '../../../constant';
+import "../style.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { changeUserInfo } from "../../../redux/actions";
+import { PHONE_REGEX_VALIDATION } from "../../../constant";
 
 function MyProfile() {
   const { userInfo } = useSelector((state) => state.userReducer);
@@ -53,15 +62,15 @@ function MyProfile() {
         rules={[
           {
             min: 2,
-            message: 'Tên quá ngắn',
+            message: "Tên quá ngắn",
           },
           {
             max: 20,
-            message: 'Tên quá dài',
+            message: "Tên quá dài",
           },
           {
             required: true,
-            message: 'Vui lòng nhập trường này!',
+            message: "Vui lòng nhập trường này!",
           },
         ]}
       >
@@ -73,15 +82,15 @@ function MyProfile() {
         rules={[
           {
             min: 2,
-            message: 'Tên quá ngắn',
+            message: "Tên quá ngắn",
           },
           {
             max: 20,
-            message: 'Tên quá dài',
+            message: "Tên quá dài",
           },
           {
             required: true,
-            message: 'Vui lòng nhập trường này!',
+            message: "Vui lòng nhập trường này!",
           },
         ]}
       >
@@ -91,8 +100,8 @@ function MyProfile() {
         label="Email"
         name="email"
         rules={[
-          { required: true, message: 'Vui lòng nhập email!' },
-          { type: 'email', message: 'Email không hợp lệ' },
+          { required: true, message: "Vui lòng nhập email!" },
+          { type: "email", message: "Email không hợp lệ" },
         ]}
       >
         <Input />
@@ -103,11 +112,11 @@ function MyProfile() {
         rules={[
           {
             required: true,
-            message: 'Vui lòng nhập Số Điện Thoại!',
+            message: "Vui lòng nhập Số Điện Thoại!",
           },
           {
             pattern: new RegExp(PHONE_REGEX_VALIDATION),
-            message: 'Số điện thoại không hợp lệ',
+            message: "Số điện thoại không hợp lệ",
           },
         ]}
       >
@@ -119,7 +128,7 @@ function MyProfile() {
         </Button>
         <Button
           htmlType="button"
-          style={{ margin: '0 8px' }}
+          style={{ margin: "0 8px" }}
           onClick={() => setIsEdit(false)}
         >
           Hủy bỏ
@@ -136,11 +145,11 @@ function MyProfile() {
         name,
         email,
         phone,
-      }),
+      })
     );
     notification.success({
-      message: 'Thay đổi thành công',
-      description: 'Thông tin của bạn đã được thay đổi',
+      message: "Thay đổi thành công",
+      description: "Thông tin của bạn đã được thay đổi",
     });
 
     setIsEdit(false);

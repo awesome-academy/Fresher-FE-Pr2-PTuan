@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
-import { Button, Row, Col, Tag } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
+import { Button, Row, Col, Tag } from "antd";
+import { useDispatch, useSelector } from "react-redux";
 import {
   cancelOrder,
   getOrderFromServer,
-} from '../../../redux/actions/cart.action';
-import { formatNumber } from '../../../helper';
+} from "../../../redux/actions/cart.action";
+import { formatNumber } from "../../../helper";
 
-import './style.scss';
+import "./style.scss";
 
 const MyOrder = () => {
   const { ordered } = useSelector((state) => state.cartReducer);
@@ -16,7 +16,7 @@ const MyOrder = () => {
   const dispatch = useDispatch();
 
   const handleCancel = (id) => {
-    dispatch(cancelOrder({ id, status: 'cancel', userID: userInfo.id }));
+    dispatch(cancelOrder({ id, status: "cancel", userID: userInfo.id }));
   };
 
   return (
@@ -32,7 +32,7 @@ const MyOrder = () => {
           className="border-bottom"
           align="middle"
           justify="space-between"
-          style={{ fontWeight: 'bold' }}
+          style={{ fontWeight: "bold" }}
         >
           <Col span={1}>STT</Col>
           <Col span={15}>
@@ -61,7 +61,7 @@ const MyOrder = () => {
                   <Row gutter={[32, 32]} key={index} align="middle">
                     <Col span={3}>
                       <img
-                        style={{ width: '100%', height: '100%' }}
+                        style={{ width: "100%", height: "100%" }}
                         src={item.image}
                         alt={item.name}
                       />
@@ -76,19 +76,19 @@ const MyOrder = () => {
                 {formatNumber(total)}
               </Col>
               <Col span={2}>
-                {status === 'pending' ? (
+                {status === "pending" ? (
                   <Tag color="warning">{status.toUpperCase()}</Tag>
                 ) : (
                   <Tag color="red">{status.toUpperCase()}</Tag>
                 )}
               </Col>
               <Col span={2}>
-                {status === 'pending' ? (
+                {status === "pending" ? (
                   <Button onClick={() => handleCancel(id)} type="link" danger>
                     Hủy đơn
                   </Button>
                 ) : (
-                  ''
+                  ""
                 )}
               </Col>
             </Row>

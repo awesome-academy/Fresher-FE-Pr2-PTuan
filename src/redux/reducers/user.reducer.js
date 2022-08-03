@@ -3,11 +3,11 @@ import {
   openNotificationWithIcon,
   removeLocal,
   setLocal,
-} from '../../helper';
-import { FAIL, REQUEST, SUCCESS, USER_ACTION } from '../constants';
+} from "../../helper";
+import { FAIL, REQUEST, SUCCESS, USER_ACTION } from "../constants";
 
 const initialState = {
-  token: getLocal('token') || '',
+  token: getLocal("token") || "",
   userInfo: {},
   loading: false,
   users: [],
@@ -37,8 +37,8 @@ function reducer(state = initialState, { type, payload }) {
         loading: true,
       };
     case SUCCESS(USER_ACTION.SIGN_IN):
-      setLocal({ key: 'token', value: payload.data.accessToken });
-      setLocal({ key: 'user', value: { id: payload.data.user.id } });
+      setLocal({ key: "token", value: payload.data.accessToken });
+      setLocal({ key: "user", value: { id: payload.data.user.id } });
       return {
         ...state,
 
@@ -97,19 +97,19 @@ function reducer(state = initialState, { type, payload }) {
         },
       };
     case REQUEST(USER_ACTION.SIGN_OUT):
-      removeLocal('token');
-      removeLocal('user');
-      removeLocal('cart');
+      removeLocal("token");
+      removeLocal("user");
+      removeLocal("cart");
 
       openNotificationWithIcon({
-        type: 'success',
-        message: 'Đăng xuất thành công',
+        type: "success",
+        message: "Đăng xuất thành công",
       });
 
       return {
         ...state,
         userInfo: {},
-        token: '',
+        token: "",
       };
     default:
       return state;

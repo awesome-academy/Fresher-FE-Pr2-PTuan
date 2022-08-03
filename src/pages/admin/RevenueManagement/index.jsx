@@ -1,46 +1,46 @@
-import React from 'react';
-import { Row, Col } from 'antd';
-import Chart from 'react-apexcharts';
-import Status from './Status';
+import React from "react";
+import { Row, Col } from "antd";
+import Chart from "react-apexcharts";
+import Status from "./Status";
 
 function RevenueManagement() {
   const chartOptions = {
     series: [
       {
-        name: 'Đã Bán',
+        name: "Đã Bán",
         data: [40, 70, 20, 90, 36, 80, 30, 91, 60],
       },
       {
-        name: 'Đã hủy',
+        name: "Đã hủy",
         data: [40, 30, 70, 80, 40, 16, 40, 20, 51, 10],
       },
     ],
     options: {
-      color: ['#6ab04c', '#2980b9'],
+      color: ["#6ab04c", "#2980b9"],
       chart: {
-        background: 'transparent',
+        background: "transparent",
       },
       dataLabels: {
         enabled: false,
       },
       stroke: {
-        curve: 'smooth',
+        curve: "smooth",
       },
       xaxis: {
         categories: [
-          'Jan',
-          'Feb',
-          'Mar',
-          'Apr',
-          'May',
-          'Jun',
-          'Jul',
-          'Aug',
-          'Sep',
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
         ],
       },
       legend: {
-        position: 'top',
+        position: "top",
       },
       grid: {
         show: false,
@@ -50,24 +50,24 @@ function RevenueManagement() {
 
   const status = [
     {
-      icon: 'fa-solid fa-bag-shopping',
-      count: '1,995',
-      title: 'Total sales',
+      icon: "fa-solid fa-bag-shopping",
+      count: "195",
+      title: "Sản phẩm",
     },
     {
-      icon: 'fa-solid fa-cart-shopping',
-      count: '2,001',
-      title: 'Daily visits',
+      icon: "fa-solid fa-cart-shopping",
+      count: "2,001",
+      title: "Đơn hàng",
     },
     {
-      icon: 'fa-solid fa-sack-dollar',
-      count: '$2,632',
-      title: 'Total income',
+      icon: "fa-solid fa-sack-dollar",
+      count: "2,632,000",
+      title: "Tổng tiền",
     },
     {
-      icon: 'fa-solid fa-receipt',
-      count: '1,711',
-      title: 'Total orders',
+      icon: "fa-solid fa-receipt",
+      count: "1,711",
+      title: "Tổng đơn hàng",
     },
   ];
 

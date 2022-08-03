@@ -1,6 +1,6 @@
-import { createAction } from '../../helper';
+import { createAction } from "../../helper";
 
-import { REQUEST, LOCATION_ACTION } from '../constants';
+import { REQUEST, LOCATION_ACTION } from "../constants";
 
 export const getCities = (payload) =>
   createAction(REQUEST(LOCATION_ACTION.GET_CITIES), payload);

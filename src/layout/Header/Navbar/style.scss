@@ -1,7 +1,7 @@
 @import "../../../style/style.scss";
 
 .navbar {
-  border-bottom: 1px solid rgba($gray, 0.3);
+  border-bottom: 1px solid #dde1ef;
   box-shadow: 0 6px 12px 0 rgb(0 0 0 / 4%);
   background-color: $white;
   padding: 0 !important;
@@ -101,7 +101,7 @@
         height: 38px;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
-        border: 0.5px solid rgba($gray, 0.3);
+        border: 0.5px solid #ddd;
         outline: none;
         font-size: 1.4rem;
         padding-left: 12px;

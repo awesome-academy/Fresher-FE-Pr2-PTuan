@@ -74,7 +74,7 @@
       "name": "tuan",
       "surname": "phan",
       "phone": "0868268142",
-      "status": "active",
+      "status": "block",
       "id": 6,
       "location": {
         "city": {
@@ -91,7 +91,7 @@
         },
         "address": "drwerwer"
       },
-      "updatedAt": 1657088477172
+      "updatedAt": 1657261337911
     }
   ],
   "styles": [

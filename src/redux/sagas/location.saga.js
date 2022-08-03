@@ -1,9 +1,9 @@
-import { put, takeEvery } from 'redux-saga/effects';
-import axios from 'axios';
+import { put, takeEvery } from "redux-saga/effects";
+import axios from "axios";
 
-import { REQUEST, SUCCESS, FAIL, LOCATION_ACTION } from '../constants';
+import { REQUEST, SUCCESS, FAIL, LOCATION_ACTION } from "../constants";
 
-import { API_PATH } from '../../Service/constants';
+import { API_PATH } from "../../Service/constants";
 
 function* getCities() {
   try {
@@ -18,7 +18,7 @@ function* getCities() {
   } catch (error) {
     yield put({
       type: FAIL(LOCATION_ACTION.GET_CITIES),
-      payload: 'Lấy data lỗi',
+      payload: "Lấy data lỗi",
     });
   }
 }
@@ -41,7 +41,7 @@ function* getDistricts(action) {
   } catch (error) {
     yield put({
       type: FAIL(LOCATION_ACTION.GET_DISTRICTS),
-      payload: 'Lấy data lỗi',
+      payload: "Lấy data lỗi",
     });
   }
 }
@@ -64,7 +64,7 @@ function* getWards(action) {
   } catch (error) {
     yield put({
       type: FAIL(LOCATION_ACTION.GET_WARDS),
-      payload: 'Lấy data lỗi',
+      payload: "Lấy data lỗi",
     });
   }
 }

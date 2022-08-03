@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 import {
   UserOutlined,
@@ -6,12 +6,12 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   BarChartOutlined,
-} from '@ant-design/icons';
-import { Layout, Menu, Row, Col, Button, Dropdown } from 'antd';
-import './style.scss';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllUser, logout } from '../../redux/actions';
+} from "@ant-design/icons";
+import { Layout, Menu, Row, Col, Button, Dropdown } from "antd";
+import "./style.scss";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUserFromServer, logoutAction } from "../../redux/actions";
 
 const { Header, Content, Sider } = Layout;
 
@@ -24,16 +24,17 @@ function PrivateLayout() {
   const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
-    if (userInfo?.role === 'admin') {
-      dispatch(getAllUser());
+    if (userInfo?.role === "admin") {
+      dispatch(getAllUserFromServer());
+      navigate("/admin/dashboard");
     } else {
-      navigate('/');
+      navigate("/");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInfo?.role]);
 
   return (
-    <Layout style={{ height: '100%' }}>
+    <Layout style={{ height: "100%" }}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <Menu
           theme="dark"
@@ -41,22 +42,22 @@ function PrivateLayout() {
           defaultSelectedKeys={[`${location.pathname}`]}
           items={[
             {
-              key: '/admin/dashboard',
+              key: "/admin/dashboard",
               icon: <BarChartOutlined />,
-              label: 'Dashboard',
-              onClick: () => navigate('/admin/dashboard'),
+              label: "Dashboard",
+              onClick: () => navigate("/admin/dashboard"),
             },
             {
-              key: '/admin/product-management',
+              key: "/admin/product-management",
               icon: <VideoCameraOutlined />,
-              label: 'Quản lí sản phẩm',
-              onClick: () => navigate('/admin/product-management'),
+              label: "Quản lí sản phẩm",
+              onClick: () => navigate("/admin/product-management"),
             },
             {
-              key: '/admin/user-management',
+              key: "/admin/user-management",
               icon: <UserOutlined />,
-              label: 'Quản lý user',
-              onClick: () => navigate('/admin/user-management'),
+              label: "Quản lý user",
+              onClick: () => navigate("/admin/user-management"),
             },
           ]}
         />
@@ -65,7 +66,7 @@ function PrivateLayout() {
         <Header
           className="site-layout-background"
           style={{
-            padding: '0 2rem',
+            padding: "0 2rem",
           }}
         >
           <Row justify="space-between">
@@ -81,8 +82,8 @@ function PrivateLayout() {
                     <Menu.Item
                       icon={<UserOutlined />}
                       onClick={() => {
-                        dispatch(logout());
-                        navigate('/login');
+                        dispatch(logoutAction());
+                        navigate("/login");
                       }}
                     >
                       Đăng xuất
@@ -98,7 +99,7 @@ function PrivateLayout() {
         <Content
           className="site-layout-background"
           style={{
-            margin: '24px 16px',
+            margin: "24px 16px",
             padding: 24,
             minHeight: 280,
           }}
